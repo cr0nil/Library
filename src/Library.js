@@ -5,12 +5,9 @@ import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import FontIcon from 'material-ui/FontIcon';
 import { blue500 } from 'material-ui/styles/colors';
-import { IconButton } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import LoginScreen from './LoginScreen';
 import LibraryScreen from './LibraryScreen'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import ReactSearchBox from 'react-search-box';
 
 class Library extends Component {
   constructor(props) {
@@ -18,29 +15,7 @@ class Library extends Component {
     this.state = { draweropen: false, currentScreen: [] };
   }
 
-  data = [
-    {
-      key: 'john',
-      value: 'John Doe',
-    },
-    {
-      key: 'jane',
-      value: 'Jane Doe',
-    },
-    {
-      key: 'mary',
-      value: 'Mary Phillips',
-    },
-    {
-      key: 'robert',
-      value: 'Robert',
-    },
-    {
-      key: 'karius',
-      value: 'Karius',
-    },
-  ]
-
+  
 
   componentDidMount() {
     var currentScreen = [];
@@ -95,12 +70,8 @@ class Library extends Component {
             //                   </IconButton> }
             isInitiallyOpen={true} />
         </MuiThemeProvider>
-        <ReactSearchBox
-        placeholder="Placeholder"
-        value="Szukaj ksiązki"
-        data={this.data}
-        callback={record => console.log(record)}
-      />
+      
+
           <MuiThemeProvider>
           <ClickAwayListener onClickAway={e=>this.closeDrawer()}>
             <Drawer 
