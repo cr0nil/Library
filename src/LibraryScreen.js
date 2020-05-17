@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import Book from './Component/Book'
+import Book from './Component/Book';
+import BookList from './Component/BookList';
 import ReactSearchBox from 'react-search-box';
 
 
@@ -16,7 +17,8 @@ class LibraryScreen extends Component {
       role: 'użytkownik',
       printingmessage: '',
       draweropen: true,
-      author: "JKM"
+      author: "JKM",
+      showB: false
     }
   }
 
@@ -64,10 +66,34 @@ class LibraryScreen extends Component {
       this.setState({ draweropen: false })
     }
   }
-setAuthor(aut){
-  this.setState({ author: aut })
-}
+  setAuthor=  (aut)=> {
+    console.log("asdasdasdasdadasdasdasd" + aut.value)
+    this.setState({
+      author: aut.value,
+      showB: true
+    })
+    console.log("asdasdasdasdadasdasdasd" + this.state.author)
+  }
 
+  showBook() {
+    if (this.state.showB) {
+      return (
+        <Book
+          autor={this.state.author}
+          title={"JP Słowacki"}
+        />
+      )
+    }
+  }
+  clean(e) {
+    console.log(e)
+    console.log(this.state.author)
+    if (e !== this.state.author)
+      this.setState({
+
+        showB: false
+      })
+  }
   render() {
     return (
       <div className="App">
@@ -95,13 +121,15 @@ setAuthor(aut){
 
             // onSelect = {e => this.setAuthor(e)}
             data={this.data}
-            onChange={e => this.setAuthor(e)}
+            onSelect={e => this.setAuthor(e)}
+            onChange={e => this.clean(e)}
           />
-          <Book
-            autor={this.state.author}
-            title={"JP Słowacki"}
-          />
+          <RaisedButton disabled={this.state.printButtonDisabled} label="Szukaj" primary={true} style={style} onClick={(event) => this.showBook(event)} />
         </MuiThemeProvider>
+        <div>
+<BookList/>
+          {/* {this.showBook()} */}
+        </div>
       </div>
     );
   }
