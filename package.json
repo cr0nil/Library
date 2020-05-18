@@ -3,23 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.0.0",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/styles": "^4.0.0",
+    "@material-ui/core": "^4.9.14",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.15.3",
-    "material-ui": "^0.20.0",
+    "axios": "^0.19.2",
+    "material-ui": "^0.20.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-dropzone": "^3.10.0",
-    "react-file-tree": "0.0.8",
     "react-frame-component": "^4.1.2",
-    "react-router-dom": "^4.0.0",
     "react-scripts": "3.4.1",
-    "react-search-box": "^2.0.2",
-    "superagent": "^3.4.4"
+    "react-search-box": "^2.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
