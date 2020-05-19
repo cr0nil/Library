@@ -15,7 +15,6 @@ class BookList extends Component {
         super(props);
 
         this.state = {
-            humor: 'happy',
             books: []
         }
 
@@ -100,23 +99,3 @@ class BookList extends Component {
     }
 }
 export default BookList;
-// ta lista przychodzi z backendu
-const users = [
-    {
-        id: 1,
-        author: 'Robin Williams',
-        title: 'teacher',
-        genre: 'bajka',
-        isbn: '12345',
-        relase_date: '11-11-1111'
-
-    },
-    {
-        id: 2,
-        author: 'John Doe',
-        title: 'cos',
-        genre: 'bajka',
-        isbn: '12345',
-        relase_date: '11-11-1111'
-    },
-];

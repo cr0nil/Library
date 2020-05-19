@@ -19,19 +19,19 @@ class Login extends Component {
       <MuiThemeProvider key={"theme"}>
         <div>
           <TextField
-            hintText="Enter your College Rollno"
-            floatingLabelText="Student Id"
+            hintText="Podaj swój email"
+            floatingLabelText="Email"
             onChange={(event, newValue) => this.setState({ username: newValue })}
           />
           <br />
           <TextField
             type="password"
-            hintText="Enter your Password"
-            floatingLabelText="Password"
+            hintText="Podaj hasło"
+            floatingLabelText="Hasło"
             onChange={(event, newValue) => this.setState({ password: newValue })}
           />
           <br />
-          <RaisedButton label="Zaloguj!" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+          <RaisedButton label="Zaloguj" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
         </div>
       </MuiThemeProvider>
     )
@@ -53,15 +53,15 @@ class Login extends Component {
           <MuiThemeProvider>
             <div>
               <TextField
-                hintText="Enter your College Rollno"
-                floatingLabelText="Student Id"
+                hintText="Podaj swój email"
+                floatingLabelText="Email"
                 onChange={(event, newValue) => this.setState({ username: newValue })}
               />
               <br />
               <TextField
                 type="password"
-                hintText="Enter your Password"
-                floatingLabelText="Password"
+                hintText="Podaj hasło"
+                floatingLabelText="Hasło"
                 onChange={(event, newValue) => this.setState({ password: newValue })}
               />
               <br />
@@ -78,19 +78,19 @@ class Login extends Component {
           <MuiThemeProvider>
             <div>
               <TextField
-                hintText="Enter your College Rollno"
-                floatingLabelText="Teacher Id"
+                hintText="Podaj swój email"
+                floatingLabelText="Email"
                 onChange={(event, newValue) => this.setState({ username: newValue })}
               />
               <br />
               <TextField
                 type="password"
-                hintText="Enter your Password"
-                floatingLabelText="Password"
+                hintText="Podaj hasło"
+                floatingLabelText="Hasło"
                 onChange={(event, newValue) => this.setState({ password: newValue })}
               />
               <br />
-              <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+              <RaisedButton label="Zaloguj" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
             </div>
           </MuiThemeProvider>
         )
@@ -139,19 +139,19 @@ class Login extends Component {
         <MuiThemeProvider>
           <div>
             <TextField
-              hintText="Enter your College Rollno"
-              floatingLabelText="Student Id"
+              hintText="Podaj swój email"
+              floatingLabelText="Email"
               onChange={(event, newValue) => this.setState({ username: newValue })}
             />
             <br />
             <TextField
               type="password"
-              hintText="Enter your Password"
-              floatingLabelText="Password"
+              hintText="Podaj hasło"
+              floatingLabelText="Hasło"
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
-            <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton label="Zaloguj" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
           </div>
         </MuiThemeProvider>
       )
@@ -163,19 +163,19 @@ class Login extends Component {
         <MuiThemeProvider>
           <div>
             <TextField
-              hintText="Enter your College Rollno"
-              floatingLabelText="Teacher Id"
+              hintText="Podaj swój email"
+              floatingLabelText="Email"
               onChange={(event, newValue) => this.setState({ username: newValue })}
             />
             <br />
             <TextField
               type="password"
-              hintText="Enter your Password"
-              floatingLabelText="Password"
+              hintText="Podaj hasło"
+              floatingLabelText="Hasło"
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
-            <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton label="Zaloguj" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
           </div>
         </MuiThemeProvider>
       )
@@ -191,12 +191,12 @@ class Login extends Component {
       <div>
         <MuiThemeProvider>
           <AppBar
-            title="Login"
+            title="Logowanie"
           />
         </MuiThemeProvider>
         <MuiThemeProvider>
           <div>
-            <p>Login as:</p>
+            <p>Zaloguj jako:</p>
             <DropDownMenu value={this.state.menuValue} onChange={(event, index, value) => this.handleMenuChange(value)}>
               <MenuItem value={1} primaryText="użytkownik" />
               <MenuItem value={2} primaryText="bibliotekarz" />
