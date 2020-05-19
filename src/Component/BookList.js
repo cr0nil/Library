@@ -60,7 +60,7 @@ class BookList extends Component {
                 <td>{user.genre}</td>
                 <td>{user.isbn}</td>
                 <td>{user.releaseDate}</td>
-                <td><Button variant="outline-primary"  disabled ={user.status === "RESERVED"} >{user.status === "RESERVED" ? "Niedostępna":"Wypożycz"} </Button>{' '}</td>
+                <td><Button variant="outline-primary"  disabled ={user.status === "RESERVED"} >{user.status === "RESERVED" ? "Zarezerwowana":"Wypożycz"} </Button>{' '}</td>
             </tr>
         )
         )

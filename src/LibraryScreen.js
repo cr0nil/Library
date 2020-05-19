@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import Book from './Component/Book';
 import BookList from './Component/BookList';
+import SearchBook from './Component/SearchBook';
 import ReactSearchBox from 'react-search-box';
 
 
@@ -148,9 +149,13 @@ class LibraryScreen extends Component {
         </MuiThemeProvider>
         <div>
           {console.log("asd",this.state.data)}
-<BookList
-data =  {this.getData() }/>
+    <BookList
+        data =  {this.getData() }/>
           {/* {this.showBook()} */}
+        </div>
+
+        <div>
+          <SearchBook/>
         </div>
       </div>
     );
