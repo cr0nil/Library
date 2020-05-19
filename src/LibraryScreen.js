@@ -7,9 +7,13 @@ import BookList from './Component/BookList';
 import ReactSearchBox from 'react-search-box';
 
 
-// var apiBaseUrl = "http://localhost:4000/api/";
+import axios from 'axios';
+var apiBaseUrl = "http://34.90.183.236:8080/books";
 // var request = require('superagent');
-
+var config = {
+  headers: {"Access-Control-Allow-Origin": "http://localhost:3000/",
+  'Access-Control-Allow-Credentials':true}
+};
 class LibraryScreen extends Component {
   constructor(props) {
     super(props);
@@ -18,10 +22,17 @@ class LibraryScreen extends Component {
       printingmessage: '',
       draweropen: true,
       author: "JKM",
-      showB: false
+      showB: false,
+      data: []
     }
   }
-
+  componentDidMount(){
+    if (!this.state.data) {
+      this.getData().then(data => this.setState({data}))
+                    .catch(err => { /*...handle the error...*/});
+  }
+ 
+  }
 
   data = [
     {
@@ -94,6 +105,15 @@ class LibraryScreen extends Component {
         showB: false
       })
   }
+
+
+  async  getData() {
+    const data = await  axios.get("http://34.90.183.236:8080/books", config);
+    console.log(data.data)
+  return await data.data;
+  }
+  
+
   render() {
     return (
       <div className="App">
@@ -127,7 +147,9 @@ class LibraryScreen extends Component {
           <RaisedButton disabled={this.state.printButtonDisabled} label="Szukaj" primary={true} style={style} onClick={(event) => this.showBook(event)} />
         </MuiThemeProvider>
         <div>
-<BookList/>
+          {console.log("asd",this.state.data)}
+<BookList
+data =  {this.getData() }/>
           {/* {this.showBook()} */}
         </div>
       </div>
