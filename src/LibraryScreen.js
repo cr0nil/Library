@@ -121,7 +121,7 @@ class LibraryScreen extends Component {
         <div onClick={(event) => this.handleDivClick(event)}>
           <center>
             <div>
-              Sprawdź to {this.state.role}
+              Sprawdź to {this.props.role}
             </div>
 
             <div>

@@ -6,7 +6,9 @@ import AppBar from 'material-ui/AppBar';
 import FontIcon from 'material-ui/FontIcon';
 import { blue500 } from 'material-ui/styles/colors';
 import LoginScreen from './LoginScreen';
-import LibraryScreen from './LibraryScreen'
+import LibraryScreen from './LibraryScreen';
+import LibraryMenScreen from './LibraryMenScreen';
+
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 class Library extends Component {
@@ -19,8 +21,14 @@ class Library extends Component {
 
   componentDidMount() {
     var currentScreen = [];
-    currentScreen.push(<LibraryScreen appContext={this.props.appContext} role={this.props.role} />);
-    this.setState({ currentScreen })
+    if(this.props.role === "użytkownik"){
+      currentScreen.push(<LibraryScreen appContext={this.props.appContext} role={this.props.role} />);
+      this.setState({ currentScreen })
+    }else{
+      currentScreen.push(<LibraryMenScreen appContext={this.props.appContext} role={this.props.role} />);
+      this.setState({ currentScreen })
+    }
+   
   }
 
   toggleDrawer = () => {
