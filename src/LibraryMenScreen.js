@@ -35,7 +35,7 @@ class LibraryMenScreen extends Component {
         <div onClick={(event) => this.handleDivClick(event)}>
           <center>
             <div>
-              Zalogowany jako {this.props.role}
+              Zalogowany jako bibliotekarz {this.props.role}
             </div>
           </center>
           <div>

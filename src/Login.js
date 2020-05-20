@@ -10,7 +10,7 @@ import axios from 'axios';
 // import UploadPage from './UploadPage';
 import Library from './Library';
 
-var apiBaseUrl = "http://34.90.183.236:8080/authenticate";
+var apiBaseUrl = "http://34.90.183.236:8080/authenticate/usertoken";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -113,7 +113,7 @@ class Login extends Component {
         if (response.status == 200) {
           console.log("Login successfull");
         
-          libraryScreen.push(<Library appContext={self.props.appContext} role={self.state.loginRole} token ={response.data.token} />)
+          libraryScreen.push(<Library appContext={self.props.appContext} role={response.data.role} token ={response.data.token} firstName = {response.data.firstName} />)
           self.props.appContext.setState({ loginPage: [], libraryScreen: libraryScreen })
 
         }
@@ -197,7 +197,7 @@ class Login extends Component {
             title="Logowanie"
           />
         </MuiThemeProvider>
-        <MuiThemeProvider>
+        {/* <MuiThemeProvider>
           <div>
             <p>Zaloguj jako:</p>
             <DropDownMenu value={this.state.menuValue} onChange={(event, index, value) => this.handleMenuChange(value)}>
@@ -205,7 +205,7 @@ class Login extends Component {
               <MenuItem value={2} primaryText="bibliotekarz" />
             </DropDownMenu>
           </div>
-        </MuiThemeProvider>
+        </MuiThemeProvider> */}
         {this.state.loginComponent}
       </div>
     );
