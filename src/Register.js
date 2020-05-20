@@ -21,23 +21,24 @@ class Register extends Component {
     console.log("nextProps", nextProps);
   }
   handleClick(event, role) {
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl = "http://34.90.183.236:8080/users";
 
     var self = this;
 
     if (this.state.first_name.length > 0 && this.state.last_name.length > 0 && this.state.email.length > 0 && this.state.password.length > 0) {
       var payload = {
-        "Imię": this.state.first_name,
-        "Nazwisko": this.state.last_name,
-        "Email": this.state.email,
-        "Hasło": this.state.password,
-        "role": role
+
+        "email": this.state.email,
+        "password": this.state.password,
+        "firstName": this.state.first_name,
+        "lastName": this.state.last_name
+
       }
 
-      axios.post(apiBaseUrl + '/register', payload)
+      axios.post(apiBaseUrl, payload)
         .then(function (response) {
           console.log(response);
-          if (response.data.code === 200) {
+          if (response.status === 200) {
             //  console.log("registration successfull");
             var loginscreen = [];
             loginscreen.push(<Login parentContext={this} appContext={self.props.appContext} role={role} />);
@@ -62,7 +63,7 @@ class Register extends Component {
     }
 
   }
-  
+
   render() {
     // console.log("props",this.props);
     var userhintText, userLabel;
