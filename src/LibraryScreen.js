@@ -119,7 +119,7 @@ class LibraryScreen extends Component {
     return (
       <div className="App">
         <div onClick={(event) => this.handleDivClick(event)}>
-          <center>
+
             <div>
               Zalogowany jako czytelnik {this.props.name}
             </div>
@@ -128,7 +128,7 @@ class LibraryScreen extends Component {
           {/*    Myśl uwolniona:*/}
           {/*{this.state.filesPreview}*/}
           {/*  </div>*/}
-          </center>
+
           <div>
             {this.state.printingmessage}
           </div>

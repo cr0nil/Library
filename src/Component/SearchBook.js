@@ -39,7 +39,7 @@ class SearchBook extends Component {
                         <td>{user.genre}</td>
                         <td>{user.isbn}</td>
                         <td>{user.releaseDate}</td>
-                        <td><Button variant="outline-primary"  disabled ={user.status === "RESERVED" || user.status === "BORROWED"} >{user.status === "RESERVED" ? "Zarezerwowana":"Wypożycz" || user.status === "BORROWED" ? "Wypożyczona":"Wypożycz"} </Button>{' '}</td>
+                        <td><Button variant="outline-primary"  disabled ={user.status === "RESERVED" || user.status === "BORROWED"} >{user.status === "RESERVED" ? "Zarezerwowana" : user.status === "BORROWED" ? "Wypożyczona":"Wypożycz"} </Button>{' '}</td>
                     </tr>
                 )
             })

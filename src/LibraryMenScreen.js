@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import SearchBook from './Component/SearchBook';
+import AddBook from './Component/AddBook';
+import { Tab } from 'react-bootstrap';
+import { Tabs } from 'react-bootstrap';
 
 
 import axios from 'axios';
@@ -16,7 +20,6 @@ class LibraryMenScreen extends Component {
     super(props);
     this.state = {
       role: 'bib lio te karz',
-      printingmessage: '',
       draweropen: true,
       author: "JKM",
       showB: false,
@@ -26,25 +29,37 @@ class LibraryMenScreen extends Component {
   componentDidMount(){
  
   }
- 
+
  
 
   render() {
     return (
       <div className="App">
         <div>
-          <center>
             <div>
-              Zalogowany jako bibliotekarz {this.props.role}
+              Zalogowany jako bibliotekarz {this.props.name}
             </div>
-          </center>
-          <div>
-            {this.state.printingmessage}
-          </div>
+
           {/*<MuiThemeProvider>*/}
           {/*  <RaisedButton disabled={this.state.printButtonDisabled} label="OK" primary={true} style={style} onClick={(event) => this.handleClick(event)} />*/}
           {/*</MuiThemeProvider>*/}
         </div>
+
+        <Tabs defaultActiveKey="management" id="uncontrolled-tab-example">
+          <Tab eventKey="management" title="Zarządzanie książkami">
+          <SearchBook/>
+          </Tab>
+          <Tab eventKey="add" title="Dodaj książkę">
+          <AddBook/>
+          </Tab>
+          <Tab eventKey="reservation" title="Wypożyczenia/Zwroty" >
+
+          </Tab>
+        </Tabs>
+
+
+
+
       </div>
     );
   }
