@@ -33,7 +33,7 @@ class SearchBook extends Component {
             }).then(data => {
             let users = data.map((user) => {
                 return (
-                    <tr>
+                    <tr key={user.id}>
                         <td>{user.author}</td>
                         <td>{user.title}</td>
                         <td>{user.genre}</td>

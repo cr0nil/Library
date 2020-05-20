@@ -45,8 +45,8 @@ class Login extends Component {
   }
   componentWillMount() {
     // console.log("willmount prop values",this.props);
-    if (this.props.role != undefined) {
-      if (this.props.role == 'użytkownik') {
+    if (this.props.role !== undefined) {
+      if (this.props.role === 'użytkownik') {
         console.log("in student componentWillMount");
         var localloginComponent = [];
         localloginComponent.push(
@@ -71,7 +71,7 @@ class Login extends Component {
         )
         this.setState({ menuValue: 1, loginComponent: localloginComponent, loginRole: 'bibliotekarz' })
       }
-      else if (this.props.role == 'bibliotekarz') {
+      else if (this.props.role === 'bibliotekarz') {
         console.log("in teacher componentWillMount");
         var localloginComponent = [];
         localloginComponent.push(
@@ -102,10 +102,12 @@ class Login extends Component {
     var self = this;
     var libraryScreen = [];
 
-    var payload = {
-      "username": this.state.username,
-      "password": this.state.password,
+    if (this.state.username.length > 0 && this.state.password.length > 0) {
+      var payload = {
+        "username": this.state.username,
+        "password": this.state.password,
 
+<<<<<<< HEAD
     }
     axios.post(apiBaseUrl, payload)
       .then(function (response) {
@@ -115,24 +117,40 @@ class Login extends Component {
         
           libraryScreen.push(<Library appContext={self.props.appContext} role={response.data.role} token ={response.data.token} firstName = {response.data.firstName} />)
           self.props.appContext.setState({ loginPage: [], libraryScreen: libraryScreen })
+=======
+      }
+      axios.post(apiBaseUrl, payload)
+          .then(function (response) {
+            console.log(response);
+            if (response.status === 200) {
+              console.log("Login successfull");
 
-        }
-        else if (response.status == 204) {
-          console.log("Username password do not match");
-          alert(response.data.success)
-        }
-        else if(response.status == 401){
-          alert("Błędne dane")
-        }
-        else {
-          console.log("Username does not exists");
-          alert("Username does not exist");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+              libraryScreen.push(<Library appContext={self.props.appContext} role={self.state.loginRole}
+                                          token={response.data.token}/>)
+              self.props.appContext.setState({loginPage: [], libraryScreen: libraryScreen})
+>>>>>>> 5478f1afb3401c941c190cbc9aba8cc5089317c0
+
+            } else if (response.status === 204) {
+              console.log("Username password do not match");
+              alert(response.data.success)
+            } else if (response.status === 401) {
+              alert("Błędne dane")
+            } else {
+              console.log("Username does not exists");
+              alert("Username does not exist");
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+    else {
+      alert("Podaj poprawne dane");
   }
+
+}
+
+
   handleMenuChange(value) {
     console.log("menuvalue", value);
     var loginRole;
@@ -150,7 +168,8 @@ class Login extends Component {
             <br />
             <TextField
               type="password"
-
+              hintText="Podaj hasło"
+              floatingLabelText="Hasło"
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
