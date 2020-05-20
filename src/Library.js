@@ -22,6 +22,7 @@ class Library extends Component {
   componentDidMount() {
     var currentScreen = [];
     if(this.props.role === "użytkownik"){
+      console.log("token",this.props.token);
       currentScreen.push(<LibraryScreen appContext={this.props.appContext} role={this.props.role} />);
       this.setState({ currentScreen })
     }else{

@@ -10,7 +10,7 @@ import axios from 'axios';
 // import UploadPage from './UploadPage';
 import Library from './Library';
 
-var apiBaseUrl = "http://localhost:4000/api/";
+var apiBaseUrl = "http://34.90.183.236:8080/authenticate";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -101,33 +101,37 @@ class Login extends Component {
   handleClick(event) {
     var self = this;
     var libraryScreen = [];
-    libraryScreen.push(<Library appContext={self.props.appContext} role={self.state.loginRole} />)
-    self.props.appContext.setState({ loginPage: [], libraryScreen: libraryScreen })
-    //   var payload={
-    //     "userid":this.state.username,
-    //     "password":this.state.password,
-    //     "role":this.state.loginRole
-    //   }
-    //   axios.post(apiBaseUrl+'login', payload)
-    //  .then(function (response) {
-    //    console.log(response);
-    //    if(response.data.code == 200){
-    //      console.log("Login successfull");
-    //     //  var uploadScreen=[];
 
-    //    }
-    //    else if(response.data.code == 204){
-    //      console.log("Username password do not match");
-    //      alert(response.data.success)
-    //    }
-    //    else{
-    //      console.log("Username does not exists");
-    //      alert("Username does not exist");
-    //    }
-    //  })
-    //  .catch(function (error) {
-    //    console.log(error);
-    //  });
+    var payload = {
+      "username": this.state.username,
+      "password": this.state.password,
+
+    }
+    axios.post(apiBaseUrl, payload)
+      .then(function (response) {
+        console.log(response);
+        if (response.status == 200) {
+          console.log("Login successfull");
+        
+          libraryScreen.push(<Library appContext={self.props.appContext} role={self.state.loginRole} token ={response.data.token} />)
+          self.props.appContext.setState({ loginPage: [], libraryScreen: libraryScreen })
+
+        }
+        else if (response.status == 204) {
+          console.log("Username password do not match");
+          alert(response.data.success)
+        }
+        else if(response.status == 401){
+          alert("Błędne dane")
+        }
+        else {
+          console.log("Username does not exists");
+          alert("Username does not exist");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   handleMenuChange(value) {
     console.log("menuvalue", value);
@@ -141,6 +145,7 @@ class Login extends Component {
             <TextField
               hintText="Enter your College Rollno"
               floatingLabelText="Student Id"
+              defaultValue="jacekp@gmail.com"
               onChange={(event, newValue) => this.setState({ username: newValue })}
             />
             <br />
@@ -148,6 +153,7 @@ class Login extends Component {
               type="password"
               hintText="Enter your Password"
               floatingLabelText="Password"
+              // defaultValue = "jacekp"
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
