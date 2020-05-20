@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import Book from './Component/Book';
-import BookList from './Component/BookList';
-import SearchBook from './Component/SearchBook';
-import ReactSearchBox from 'react-search-box';
-import jkm from './jkm.jpg'
 
 
 import axios from 'axios';
@@ -40,22 +35,16 @@ class LibraryMenScreen extends Component {
         <div onClick={(event) => this.handleDivClick(event)}>
           <center>
             <div>
-              Sprawdź to {this.props.role}
-            </div>
-
-            <div>
-              Myśl uwolniona:
-          {this.state.filesPreview}
+              Zalogowany jako {this.props.role}
             </div>
           </center>
           <div>
             {this.state.printingmessage}
           </div>
-          <MuiThemeProvider>
-            <RaisedButton disabled={this.state.printButtonDisabled} label="OK" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
-          </MuiThemeProvider>
+          {/*<MuiThemeProvider>*/}
+          {/*  <RaisedButton disabled={this.state.printButtonDisabled} label="OK" primary={true} style={style} onClick={(event) => this.handleClick(event)} />*/}
+          {/*</MuiThemeProvider>*/}
         </div>
-        <img src={jkm} />
       </div>
     );
   }

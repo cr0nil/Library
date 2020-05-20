@@ -51,13 +51,16 @@ class SearchBook extends Component {
     render() {
         return (
             <div>
+                <p>Podaj tytuł ksiązki</p>
                 <Navbar className="bg-light justify-content-center">
                     <Form inline>
                         <FormControl type="text" value={this.state.value} onChange={this.handleChange} placeholder="Wpisz tytuł książki" className=" mr-sm-4" />
                         <Button variant="primary" onClick={(event) => this.handleClick(event)}>Szukaj</Button>
                     </Form>
                 </Navbar>
+                <br/>
                 <h1>Wyszukane książki</h1>
+                <br/>
                 <Table striped bordered hover>
                     <thead>
                     <tr>

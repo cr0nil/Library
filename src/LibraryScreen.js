@@ -35,28 +35,28 @@ class LibraryScreen extends Component {
  
   }
 
-  data = [
-    {
-      key: 'Adam',
-      value: 'Adam Mickiwicz',
-    },
-    {
-      key: 'jane',
-      value: 'Jane Doe',
-    },
-    {
-      key: 'mary',
-      value: 'Mary Phillips',
-    },
-    {
-      key: 'robert',
-      value: 'Robert',
-    },
-    {
-      key: 'karius',
-      value: 'Karius',
-    },
-  ]
+  // data = [
+  //   {
+  //     key: 'Adam',
+  //     value: 'Adam Mickiwicz',
+  //   },
+  //   {
+  //     key: 'jane',
+  //     value: 'Jane Doe',
+  //   },
+  //   {
+  //     key: 'mary',
+  //     value: 'Mary Phillips',
+  //   },
+  //   {
+  //     key: 'robert',
+  //     value: 'Robert',
+  //   },
+  //   {
+  //     key: 'karius',
+  //     value: 'Karius',
+  //   },
+  // ]
 
 
   toggleDrawer(event) {
@@ -121,40 +121,41 @@ class LibraryScreen extends Component {
         <div onClick={(event) => this.handleDivClick(event)}>
           <center>
             <div>
-              Sprawdź to {this.props.role}
+              Zalogowany jako {this.props.role}
             </div>
 
-            <div>
-              Myśl uwolniona:
-          {this.state.filesPreview}
-            </div>
+          {/*  <div>*/}
+          {/*    Myśl uwolniona:*/}
+          {/*{this.state.filesPreview}*/}
+          {/*  </div>*/}
           </center>
           <div>
             {this.state.printingmessage}
           </div>
-          <MuiThemeProvider>
-            <RaisedButton disabled={this.state.printButtonDisabled} label="OK" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
-          </MuiThemeProvider>
+          {/*<MuiThemeProvider>*/}
+          {/*  <RaisedButton disabled={this.state.printButtonDisabled} label="OK" primary={true} style={style} onClick={(event) => this.handleClick(event)} />*/}
+          {/*</MuiThemeProvider>*/}
         </div>
-        <MuiThemeProvider>
-          <ReactSearchBox
-            placeholder="Wyszukaj książkę"
+        {/*<MuiThemeProvider>*/}
+        {/*  <ReactSearchBox*/}
+        {/*    placeholder="Wyszukaj książkę"*/}
 
-            // onSelect = {e => this.setAuthor(e)}
-            data={this.data}
-            onSelect={e => this.setAuthor(e)}
-            onChange={e => this.clean(e)}
-          />
-          <RaisedButton disabled={this.state.printButtonDisabled} label="Szukaj" primary={true} style={style} onClick={(event) => this.showBook(event)} />
-        </MuiThemeProvider>
-        <div>
-          {console.log("asd",this.state.data)}
-    <BookList
-        data =  {this.getData() }/>
-          {/* {this.showBook()} */}
-        </div>
+        {/*    // onSelect = {e => this.setAuthor(e)}*/}
+        {/*    data={this.data}*/}
+        {/*    onSelect={e => this.setAuthor(e)}*/}
+        {/*    onChange={e => this.clean(e)}*/}
+        {/*  />*/}
+        {/*  <RaisedButton disabled={this.state.printButtonDisabled} label="Szukaj" primary={true} style={style} onClick={(event) => this.showBook(event)} />*/}
+        {/*</MuiThemeProvider>*/}
+    {/*    <div>*/}
+    {/*      {console.log("asd",this.state.data)}*/}
+    {/*<BookList*/}
+    {/*    data =  {this.getData() }/>*/}
+    {/*      /!* {this.showBook()} *!/*/}
+    {/*    </div>*/}
 
         <div>
+          <br/>
           <SearchBook/>
         </div>
       </div>

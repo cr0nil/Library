@@ -41,7 +41,7 @@ class Loginscreen extends Component {
   componentWillMount(){
     var loginscreen=[];
     loginscreen.push(<Login parentContext={this} appContext={this.props.appContext} key={"LoginScreen"}/>);
-    var loginmessage = "Not registered yet, Register Now";
+    var loginmessage = "Zarejestruj się";
     this.setState({
                   loginscreen:loginscreen,
                   loginmessage:loginmessage
@@ -53,7 +53,7 @@ class Loginscreen extends Component {
     if(this.state.isLogin){
       let loginscreen=[];
       loginscreen.push(<Register parentContext={this} appContext={this.props.appContext} role={userRole}/>);
-      loginmessage = "Already registered.Go to Login";
+      loginmessage = "Jeśli jesteś zarejestrowany to zaloguj się";
       let loginButtons=[];
       loginButtons.push(
         <div key="login-button">
