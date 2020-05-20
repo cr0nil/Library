@@ -107,7 +107,6 @@ class Login extends Component {
         "username": this.state.username,
         "password": this.state.password,
 
-<<<<<<< HEAD
     }
     axios.post(apiBaseUrl, payload)
       .then(function (response) {
@@ -117,18 +116,6 @@ class Login extends Component {
         
           libraryScreen.push(<Library appContext={self.props.appContext} role={response.data.role} token ={response.data.token} firstName = {response.data.firstName} />)
           self.props.appContext.setState({ loginPage: [], libraryScreen: libraryScreen })
-=======
-      }
-      axios.post(apiBaseUrl, payload)
-          .then(function (response) {
-            console.log(response);
-            if (response.status === 200) {
-              console.log("Login successfull");
-
-              libraryScreen.push(<Library appContext={self.props.appContext} role={self.state.loginRole}
-                                          token={response.data.token}/>)
-              self.props.appContext.setState({loginPage: [], libraryScreen: libraryScreen})
->>>>>>> 5478f1afb3401c941c190cbc9aba8cc5089317c0
 
             } else if (response.status === 204) {
               console.log("Username password do not match");
