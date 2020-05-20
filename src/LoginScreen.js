@@ -17,14 +17,14 @@ class Loginscreen extends Component {
       <div key={"Login-Div"}>
       <MuiThemeProvider>
         <div>
-           <RaisedButton label={"Rejestracja jako użytkownik"} primary={true} style={style} onClick={(event) => this.handleClick(event,'użytkownik')}/>
+           <RaisedButton label={"Rejestracja czytelnika"} primary={true} style={style} onClick={(event) => this.handleClick(event,'użytkownik')}/>
        </div>
        </MuiThemeProvider>
-       <MuiThemeProvider>
-       <div>
-          <RaisedButton label={"Rejestracja jako bibliotekarz"} primary={true} style={style} onClick={(event) => this.handleClick(event,'bibliotekarz')}/>
-      </div>
-      </MuiThemeProvider>
+      {/* <MuiThemeProvider>*/}
+      {/* <div>*/}
+      {/*    <RaisedButton label={"Rejestracja jako bibliotekarz"} primary={true} style={style} onClick={(event) => this.handleClick(event,'bibliotekarz')}/>*/}
+      {/*</div>*/}
+      {/*</MuiThemeProvider>*/}
       </div>
     )
     this.state={
@@ -34,7 +34,7 @@ class Loginscreen extends Component {
       loginmessage:'',
       loginButtons:loginButtons,
       studentbuttonLabel:'Rejestracja jako użytkownik',
-      teacherbuttonLabel:'Rejestracja jako bibliotekarz',
+      // teacherbuttonLabel:'Rejestracja jako bibliotekarz',
       isLogin:true
     }
   }
@@ -77,14 +77,14 @@ class Loginscreen extends Component {
         <div>
         <MuiThemeProvider>
           <div>
-             <RaisedButton label={"Rejestracja jako użytkownik"} primary={true} style={style} onClick={(event) => this.handleClick(event,'użytkownik')}/>
+             <RaisedButton label={"Rejestracja czytelnika"} primary={true} style={style} onClick={(event) => this.handleClick(event,'użytkownik')}/>
          </div>
          </MuiThemeProvider>
-         <MuiThemeProvider>
-         <div>
-            <RaisedButton label={"Rejestracja jako bibliotekarz"} primary={true} style={style} onClick={(event) => this.handleClick(event,'bibliotekarz')}/>
-        </div>
-        </MuiThemeProvider>
+        {/* <MuiThemeProvider>*/}
+        {/* <div>*/}
+        {/*    <RaisedButton label={"Rejestracja jako bibliotekarz"} primary={true} style={style} onClick={(event) => this.handleClick(event,'bibliotekarz')}/>*/}
+        {/*</div>*/}
+        {/*</MuiThemeProvider>*/}
         </div>
       )
       loginscreen.push(<Login parentContext={this} appContext={this.props.appContext} role={userRole}/>);

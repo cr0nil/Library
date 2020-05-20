@@ -32,7 +32,7 @@ class LibraryMenScreen extends Component {
   render() {
     return (
       <div className="App">
-        <div onClick={(event) => this.handleDivClick(event)}>
+        <div>
           <center>
             <div>
               Zalogowany jako {this.props.role}
