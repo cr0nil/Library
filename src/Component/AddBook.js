@@ -1,8 +1,7 @@
-import React, { Component, useState } from 'react';
-import Navbar from "react-bootstrap/Navbar";
-import { Button, Form, Row, Col } from "react-bootstrap";
-import { RaisedButton } from 'material-ui';
+import React, {Component} from 'react';
+import {Button, Form, Row, Col, Alert} from "react-bootstrap";
 import axios from 'axios';
+
 class AddBook extends Component {
     constructor(props) {
         super(props);
@@ -31,12 +30,15 @@ class AddBook extends Component {
         })
         this.handleSubmit(event)
     };
+
+    clearForm = () => {
+        document.getElementById("addBookFrom").reset();
+    }
+
+
     addBookForm() {
-
-
-
         return (
-            <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmits}>
+            <Form noValidate validated={this.state.validated} id="addBookFrom" onSubmit={this.handleSubmits}>
                 <Form.Group as={Row} controlId="validationTitle">
                     <Form.Label column sm={2}> Podaj tytuł </Form.Label>
                     <Col sm={2}>
@@ -49,7 +51,7 @@ class AddBook extends Component {
                         />
                         <Form.Control.Feedback type="invalid">
                             Podaj tytuł!
-                    </Form.Control.Feedback>
+                        </Form.Control.Feedback>
                     </Col>
                 </Form.Group>
 
@@ -73,12 +75,22 @@ class AddBook extends Component {
                     <Form.Label column sm={2}> Podaj gatunek </Form.Label>
                     <Col sm={2}>
                         <Form.Control
+                            as="select"
                             required
-                            type="text"
-                            name="genre"
-                            placeholder="Gatunek"
                             ref={this.genre}
-                        />
+                        >
+                            <option>powiesc</option>
+                            <option>dramat</option>
+                            <option>wiersz</option>
+                            <option>historyczna</option>
+                            <option>fantasy</option>
+                            <option>horror</option>
+                            <option>komedia</option>
+                            <option>autobiografia</option>
+                            <option>kryminal</option>
+                            <option>tragedia</option>
+                            <option>przygodowa</option>
+                        </Form.Control>
                         <Form.Control.Feedback type="invalid">
                             Podaj gatunek!
                         </Form.Control.Feedback>
@@ -116,16 +128,14 @@ class AddBook extends Component {
                         </Form.Control.Feedback>
                     </Col>
                 </Form.Group>
-
-                <Button onClick={e => this.handleSubmits(e)} >Dodaj książkę</Button>
-
-
+                <Form.Group as={Row}>
+                    <Col sm={{span: 2, offset: 2}}>
+                        <Button onClick={e => this.handleSubmits(e)}>Dodaj książkę</Button>
+                    </Col>
+                </Form.Group>
             </Form>
         );
     }
-
-
-
 
 
     handleSubmit = (event) => {
@@ -136,27 +146,31 @@ class AddBook extends Component {
             author: this.author.current.value,
             genre: this.genre.current.value,
             isbn: this.isbn.current.value,
-            releaseDate:this.relaseDate.current.value
+            releaseDate: this.relaseDate.current.value
         }
-
         console.log(body)
         axios.post(apiBaseUrl, body)
             .then(function (response) {
-                console.log(response);
-
-             }).catch(function (error) {
-                console.log(error);
-              })
-
+                if (response.status === 200) {
+                    console.log(response);
+                    alert("Dodano ksążkę")
+                }
+            }).catch(function (error) {
+            console.log(error);
+        })
+        {
+            this.clearForm()
+        }
     }
 
 
     render() {
         return (
             <div>
-                <br />
-                <br />
+                <br/>
+                <br/>
                 {this.addBookForm()}
+
             </div>
         )
     }
@@ -164,7 +178,4 @@ class AddBook extends Component {
 
 }
 
-const style = {
-    margin: 15,
-};
 export default AddBook;

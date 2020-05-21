@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import SearchBook from './Component/SearchBook';
+import ManagementBooks from './Component/ManagementBooks';
 import AddBook from './Component/AddBook';
+import ReservationsBook from './Component/ReservationsBook';
 import { Tab } from 'react-bootstrap';
 import { Tabs } from 'react-bootstrap';
 
@@ -47,13 +48,13 @@ class LibraryMenScreen extends Component {
 
         <Tabs defaultActiveKey="management" id="uncontrolled-tab-example">
           <Tab eventKey="management" title="Zarządzanie książkami">
-          <SearchBook/>
+          <ManagementBooks/>
           </Tab>
           <Tab eventKey="add" title="Dodaj książkę">
           <AddBook/>
           </Tab>
           <Tab eventKey="reservation" title="Wypożyczenia/Zwroty" >
-
+          <ReservationsBook/>
           </Tab>
         </Tabs>
 
