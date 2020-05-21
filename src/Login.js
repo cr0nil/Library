@@ -120,15 +120,17 @@ class Login extends Component {
             } else if (response.status === 204) {
               console.log("Username password do not match");
               alert(response.data.success)
-            } else if (response.status === 401) {
-              alert("Błędne dane")
-            } else {
+            }  else {
               console.log("Username does not exists");
               alert("Username does not exist");
             }
           })
           .catch(function (error) {
             console.log(error);
+            if (error.response.status === 401) {
+              console.log("Username does not exists401");
+              alert("Błędne dane")
+            }
           });
     }
     else {

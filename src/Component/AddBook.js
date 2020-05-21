@@ -131,7 +131,7 @@ class AddBook extends Component {
     handleSubmit = (event) => {
         var apiBaseUrl = "http://34.90.183.236:8080/books";
         event.preventDefault();
-        let form = {
+        let body = {
             title: this.title.current.value,
             author: this.author.current.value,
             genre: this.genre.current.value,
@@ -139,8 +139,8 @@ class AddBook extends Component {
             releaseDate:this.relaseDate.current.value
         }
 
-        console.log(form)
-        axios.post(apiBaseUrl, form)
+        console.log(body)
+        axios.post(apiBaseUrl, body)
             .then(function (response) {
                 console.log(response);
 
