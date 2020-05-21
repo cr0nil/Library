@@ -66,8 +66,8 @@ class ReservationsBook extends Component {
                 <Table striped bordered hover>
                     <thead>
                     <tr>
-                        <th>Tytuł</th>
                         <th>Autor</th>
+                        <th>Tytuł</th>
                         <th>Gatunek</th>
                         <th>ISBN</th>
                         <th>Data wydania</th>

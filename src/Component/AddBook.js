@@ -158,9 +158,7 @@ class AddBook extends Component {
             }).catch(function (error) {
             console.log(error);
         })
-        {
-            this.clearForm()
-        }
+        this.clearForm()
     }
 
 

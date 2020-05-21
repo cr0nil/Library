@@ -19,7 +19,9 @@ class SearchBook extends Component {
         this.setState({value: event.target.value});
     }
 
+    handleReservation(event){
 
+    }
 
     handleClick(event) {
         const zmienna = this.state.value;
@@ -39,7 +41,10 @@ class SearchBook extends Component {
                         <td>{user.genre}</td>
                         <td>{user.isbn}</td>
                         <td>{user.releaseDate}</td>
-                        <td><Button variant="outline-primary"  disabled ={user.status === "RESERVED" || user.status === "BORROWED"} >{user.status === "RESERVED" ? "Zarezerwowana" : user.status === "BORROWED" ? "Wypożyczona":"Wypożycz"} </Button>{' '}</td>
+                        <td><Button variant="outline-primary"  disabled ={user.status === "RESERVED" || user.status === "BORROWED"} >
+                            {user.status === "RESERVED" ? "Zarezerwowana" : user.status === "BORROWED" ? "Wypożyczona":"Wypożycz"}
+                            onClick={(event) => this.handleReservation(event)}
+                        </Button>{' '}</td>
                     </tr>
                 )
             })
@@ -64,8 +69,8 @@ class SearchBook extends Component {
                 <Table striped bordered hover>
                     <thead>
                     <tr>
-                        <th>Tytuł</th>
                         <th>Autor</th>
+                        <th>Tytuł</th>
                         <th>Gatunek</th>
                         <th>ISBN</th>
                         <th>Data wydania</th>
