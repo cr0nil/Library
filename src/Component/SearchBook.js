@@ -25,7 +25,7 @@ class SearchBook extends Component {
     async loadData() {
         const zmienna = this.state.value;
 
-        const data = await axios.get(`http://34.90.183.236:8080/books`, { headers: { "Authorization": `Bearer ${this.props.token}` } })
+        const data = await axios.get(`http://34.90.183.236:8080/books`, { headers: { "Authorization": `Bearer ${this.props.token}` }, params: {search: 'title%' + zmienna} })
         return await data.data;
 
     }
@@ -42,7 +42,7 @@ class SearchBook extends Component {
                         <td>{book.author}</td>
                         <td>{book.title}</td>
                         <td>{book.genre}</td>
-                        <td>{book.isbnbook}</td>
+                        <td>{book.isbn}</td>
                         <td>{book.releaseDate}</td>
                         <td><Button variant="outline-primary" onClick={(event) => this.handleReservation(event)} disabled={book.status === "RESERVED" || book.status === "BORROWED"} >
                             {book.status === "RESERVED" ? "Zarezerwowana" : book.status === "BORROWED" ? "Wypożyczona" : "Wypożycz"}</Button>

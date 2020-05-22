@@ -26,7 +26,7 @@ class ManagementBooks extends Component {
 
     async loadData() {
         const zmienna = this.state.value;
-        const data = await axios.get(`http://34.90.183.236:8080/books`, { headers: { "Authorization": `Bearer ${this.props.token}` } })
+        const data = await axios.get(`http://34.90.183.236:8080/books`, { headers: { "Authorization": `Bearer ${this.props.token}` }, params: {search: 'title%' + zmienna} })
         return await data.data;
 
     }

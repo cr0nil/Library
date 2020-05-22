@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import Navbar from "react-bootstrap/Navbar";
 import { Form } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
+import axios from "axios";
 
 
 class ReservationsBook extends Component {
@@ -19,36 +20,72 @@ class ReservationsBook extends Component {
         this.setState({value: event.target.value});
     }
 
-    handleClick(event) {
+
+    async loadData() {
         const zmienna = this.state.value;
-        //przyklad: http://34.90.183.236:8080/reservations?email=jacekp@g
-        const url = new URL("http://34.90.183.236:8080/reservations"),
-            params = {email: zmienna};
-        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-        fetch(url)
-            .then(results => {
-                return results.json();
-            }).then(data => {
-            let users = data.map((user) => {
-                return (
-                    <tr key={user.reservationId}>
-                        <td>{user.bookAuthor}</td>
-                        <td>{user.bookTitle}</td>
-                        <td>{user.bookGenre}</td>
-                        <td>{user.bookIsbn}</td>
-                        <td>{user.bookReleaseDate}</td>
-                        <td>{user.reservationDate}</td>
-                        <td>{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Wypożycz"}</td>
-                        <td><Button variant="info" disabled ={user.bookStatus === "RESERVED"}>Wypożycz</Button></td>
-                        <td><Button variant="info" disabled ={user.bookStatus === "BORROWED"}>Zwróć</Button></td>
-                        {/*<td><Button variant="outline-primary"  disabled ={user.bookStatus === "RESERVED" || user.bookStatus === "BORROWED"} >{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Wypożycz"} </Button>{' '}</td>*/}
-                    </tr>
-                )
-            })
-            this.setState({ users: users });
-            console.log("state", this.state.users)
-        })
+        console.log(zmienna)
+        const data = await axios.get(`http://34.90.183.236:8080/reservations`, { headers: { "Authorization": `Bearer ${this.props.token}` }, params: {email: zmienna} })
+        return await data.data;
+
     }
+
+    showData() {
+
+        this.loadData().then(data => {
+
+                let users = data.map((user) => {
+                    return (
+                        <tr key={user.reservationId}>
+                            <td>{user.bookAuthor}</td>
+                            <td>{user.bookTitle}</td>
+                            <td>{user.bookGenre}</td>
+                            <td>{user.bookIsbn}</td>
+                            <td>{user.bookReleaseDate}</td>
+                            <td>{user.reservationDate}</td>
+                            <td>{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Wypożycz"}</td>
+                            <td><Button variant="info" disabled ={user.bookStatus === "RESERVED"}>Wypożycz</Button></td>
+                            <td><Button variant="info" disabled ={user.bookStatus === "BORROWED"}>Zwróć</Button></td>
+                            {/*<td><Button variant="outline-primary"  disabled ={user.bookStatus === "RESERVED" || user.bookStatus === "BORROWED"} >{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Wypożycz"} </Button>{' '}</td>*/}
+                        </tr>
+                    )
+                })
+                this.setState({ users })
+            }
+
+        ).catch(err => { console.log(err) });
+
+    }
+
+    // handleClick(event) {
+    //     const zmienna = this.state.value;
+    //     //przyklad: http://34.90.183.236:8080/reservations?email=jacekp@g
+    //     const url = new URL("http://34.90.183.236:8080/reservations"),
+    //         params = {email: zmienna};
+    //     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+    //     fetch(url)
+    //         .then(results => {
+    //             return results.json();
+    //         }).then(data => {
+    //         let users = data.map((user) => {
+    //             return (
+    //                 <tr key={user.reservationId}>
+    //                     <td>{user.bookAuthor}</td>
+    //                     <td>{user.bookTitle}</td>
+    //                     <td>{user.bookGenre}</td>
+    //                     <td>{user.bookIsbn}</td>
+    //                     <td>{user.bookReleaseDate}</td>
+    //                     <td>{user.reservationDate}</td>
+    //                     <td>{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Wypożycz"}</td>
+    //                     <td><Button variant="info" disabled ={user.bookStatus === "RESERVED"}>Wypożycz</Button></td>
+    //                     <td><Button variant="info" disabled ={user.bookStatus === "BORROWED"}>Zwróć</Button></td>
+    //                     {/*<td><Button variant="outline-primary"  disabled ={user.bookStatus === "RESERVED" || user.bookStatus === "BORROWED"} >{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Wypożycz"} </Button>{' '}</td>*/}
+    //                 </tr>
+    //             )
+    //         })
+    //         this.setState({ users: users });
+    //         console.log("state", this.state.users)
+    //     })
+    // }
 
     render() {
         return (
@@ -57,7 +94,7 @@ class ReservationsBook extends Component {
                 <Navbar className="bg-light justify-content-center">
                     <Form inline>
                         <FormControl type="text" value={this.state.value} onChange={this.handleChange} placeholder="Wpisz email" className=" mr-sm-4" />
-                        <Button variant="primary" onClick={(event) => this.handleClick(event)}>Szukaj</Button>
+                        <Button variant="primary" onClick={(event) => this.showData(event)}>Szukaj</Button>
                     </Form>
                 </Navbar>
                 <br/>
