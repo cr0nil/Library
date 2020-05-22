@@ -23,7 +23,7 @@ class Library extends Component {
     var currentScreen = [];
     if(this.props.role === "ROLE_READER"){
       console.log("token",this.props.token);
-      currentScreen.push(<LibraryScreen appContext={this.props.appContext} role={this.props.role} name = {this.props.firstName} />);
+      currentScreen.push(<LibraryScreen appContext={this.props.appContext} role={this.props.role} name = {this.props.firstName}  token = {this.props.token} />);
       this.setState({ currentScreen })
     }else{
       currentScreen.push(<LibraryMenScreen appContext={this.props.appContext} role={this.props.role}  name = {this.props.firstName} token = {this.props.token}/>);

@@ -76,28 +76,14 @@ class ManagementBooks extends Component {
 
    async loadData() {
         const zmienna = this.state.value;
-        //  { headers: {"Authorization" : `Bearer ${token}`} }
-        //przyklad: http://34.90.183.236:8080/books?search=title%sierotka,status:available
          const data = await  axios.get(`http://34.90.183.236:8080/books`,{ headers: {"Authorization" :  `Bearer ${this.props.token}` }})
    return await data.data;
            
-        // const url = new URL("http://34.90.183.236:8080/books"),
-        //     params = { search: "title%" + zmienna };
-        // Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-        // fetch(url)
-        //     .then(results => {
-        //         return results.json();
-        //     }).then(data => {
-        //         this.showData(data)
-
-        //         this.setState({ books: data });
-        //         console.log("state", this.state.books)
-        //     })
     }
 
     handleDelete(book) {
         console.log(book);
-        axios.delete(`http://34.90.183.236:8080/books/${book}`)
+        axios.delete(`http://34.90.183.236:8080/books/${book}`,{ headers: {"Authorization" :  `Bearer ${this.props.token}` }})
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response);

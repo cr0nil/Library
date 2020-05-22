@@ -149,7 +149,7 @@ class AddBook extends Component {
             releaseDate: this.relaseDate.current.value
         }
         console.log(body)
-        axios.post(apiBaseUrl, body)
+        axios.post(apiBaseUrl, body,{ headers: {"Authorization" :  `Bearer ${this.props.token}` }})
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response);

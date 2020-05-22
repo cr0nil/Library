@@ -51,7 +51,7 @@ class LibraryMenScreen extends Component {
           <ManagementBooks token = {this.props.token}/>
           </Tab>
           <Tab eventKey="add" title="Dodaj książkę">
-          <AddBook/>
+          <AddBook token = {this.props.token}/>
           </Tab>
           <Tab eventKey="reservation" title="Wypożyczenia/Zwroty" >
           <ReservationsBook/>

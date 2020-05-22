@@ -156,7 +156,7 @@ class LibraryScreen extends Component {
 
         <div>
           <br/>
-          <SearchBook/>
+          <SearchBook  token = {this.props.token}/>
         </div>
       </div>
     );
