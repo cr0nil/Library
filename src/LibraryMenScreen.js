@@ -28,7 +28,7 @@ class LibraryMenScreen extends Component {
     }
   }
   componentDidMount(){
- 
+ console.log(this.props.token)
   }
 
  
@@ -48,7 +48,7 @@ class LibraryMenScreen extends Component {
 
         <Tabs defaultActiveKey="management" id="uncontrolled-tab-example">
           <Tab eventKey="management" title="Zarządzanie książkami">
-          <ManagementBooks/>
+          <ManagementBooks token = {this.props.token}/>
           </Tab>
           <Tab eventKey="add" title="Dodaj książkę">
           <AddBook/>
