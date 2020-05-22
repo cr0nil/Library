@@ -20,8 +20,12 @@ class SearchBook extends Component {
     }
 
     handleReservation(book) {
-        console.log(book);
-        axios.post(`http://34.90.183.236:8080/reservations/borrow/${book}`, { headers: { "Authorization": `Bearer ${this.props.token}` } })
+        console.log('tokkken',this.props.token);
+        const headers = {
+        
+             "Authorization": `Bearer ${this.props.token}` 
+        }
+        axios({ method: 'POST', url: `http://34.90.183.236:8080/reservations/borrow/${book}`, headers: headers})
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response);
