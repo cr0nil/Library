@@ -6,6 +6,7 @@ import Book from './Component/Book';
 import BookList from './Component/BookList';
 import SearchBook from './Component/SearchBook';
 import ReactSearchBox from 'react-search-box';
+import { Card } from 'react-bootstrap';
 
 
 import axios from 'axios';
@@ -121,7 +122,9 @@ class LibraryScreen extends Component {
         <div onClick={(event) => this.handleDivClick(event)}>
 
             <div>
-              Zalogowany jako czytelnik {this.props.name}
+              <Card>
+                <Card.Body>Zalogowany jako czytelnik {this.props.name}</Card.Body>
+              </Card>
             </div>
 
           {/*  <div>*/}

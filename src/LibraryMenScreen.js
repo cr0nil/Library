@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ManagementBooks from './Component/ManagementBooks';
 import AddBook from './Component/AddBook';
 import ReservationsBook from './Component/ReservationsBook';
-import { Tab } from 'react-bootstrap';
+import {Card, Tab} from 'react-bootstrap';
 import { Tabs } from 'react-bootstrap';
 
 
@@ -38,7 +38,9 @@ class LibraryMenScreen extends Component {
       <div className="App">
         <div>
             <div>
-              Zalogowany jako bibliotekarz {this.props.name}
+                <Card>
+                    <Card.Body>Zalogowany jako czytelnik {this.props.name}</Card.Body>
+                </Card>
             </div>
 
           {/*<MuiThemeProvider>*/}
