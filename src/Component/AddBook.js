@@ -79,8 +79,8 @@ class AddBook extends Component {
                             required
                             ref={this.genre}
                         >
-                            <option>powiesc</option>
                             <option>dramat</option>
+                            <option>powiesc</option>
                             <option>wiersz</option>
                             <option>historyczna</option>
                             <option>fantasy</option>

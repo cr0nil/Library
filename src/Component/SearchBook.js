@@ -35,10 +35,10 @@ class SearchBook extends Component {
             console.log(error);
         })
 
-        // this.setState(state => {
-        //     state.books = book;
-        //     return state;
-        // })
+        this.setState(state => {
+            state.books = book;
+            return state;
+        })
     }
 
     async loadData() {
@@ -64,7 +64,7 @@ class SearchBook extends Component {
                         <td>{book.isbn}</td>
                         <td>{book.releaseDate}</td>
                         <td><Button variant="outline-primary" onClick={() => this.handleReservation(book.id)} disabled={book.status === "RESERVED" || book.status === "BORROWED"} >
-                            {book.status === "RESERVED" ? "Zarezerwowana" : book.status === "BORROWED" ? "Wypożyczona" : "Wypożycz"}</Button>
+                            {book.status === "RESERVED" ? "Zarezerwowana" : book.status === "BORROWED" ? "Wypożyczona" : "Zarezerwuj"}</Button>
                         </td>
                     </tr>
                 )

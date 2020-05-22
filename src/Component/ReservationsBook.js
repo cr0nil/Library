@@ -20,6 +20,51 @@ class ReservationsBook extends Component {
         this.setState({value: event.target.value});
     }
 
+    handleLend(user) {
+        console.log(user)
+        const headers = {
+
+            "Authorization": `Bearer ${this.props.token}`
+        }
+        axios({ method: 'POST', url: `http://34.90.183.236:8080/reservations/lend/${user}`, headers: headers})
+            .then(function (response) {
+                if (response.status === 200) {
+                    console.log(response);
+                    alert("Wydano książkę")
+                }
+            }).catch(function (error) {
+            console.log(error);
+        })
+
+        this.setState(state => {
+            state.users = user;
+            return state;
+        })
+    }
+
+
+    handleReturn(user) {
+        console.log(user)
+        const headers = {
+
+            "Authorization": `Bearer ${this.props.token}`
+        }
+        axios({ method: 'POST', url: `http://34.90.183.236:8080/reservations/return/${user}`, headers: headers})
+            .then(function (response) {
+                if (response.status === 200) {
+                    console.log(response);
+                    alert("Książka została oddana")
+                }
+            }).catch(function (error) {
+            console.log(error);
+        })
+
+        this.setState(state => {
+            state.users = user;
+            return state;
+        })
+    }
+
 
     async loadData() {
         const zmienna = this.state.value;
@@ -42,9 +87,9 @@ class ReservationsBook extends Component {
                             <td>{user.bookIsbn}</td>
                             <td>{user.bookReleaseDate}</td>
                             <td>{user.reservationDate}</td>
-                            <td>{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Wypożycz"}</td>
-                            <td><Button variant="info" disabled ={user.bookStatus === "RESERVED"}>Wypożycz</Button></td>
-                            <td><Button variant="info" disabled ={user.bookStatus === "BORROWED"}>Zwróć</Button></td>
+                            <td>{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Dostepna"}</td>
+                            <td><Button variant="info" onClick={() => this.handleReturn(user.reservationId)} disabled ={user.bookStatus === "RESERVED"}>Zwróc</Button></td>
+                            <td><Button variant="info" onClick={() => this.handleLend(user.reservationId)} disabled ={user.bookStatus === "BORROWED"}>Wypożycz</Button></td>
                             {/*<td><Button variant="outline-primary"  disabled ={user.bookStatus === "RESERVED" || user.bookStatus === "BORROWED"} >{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Wypożycz"} </Button>{' '}</td>*/}
                         </tr>
                     )
@@ -108,7 +153,7 @@ class ReservationsBook extends Component {
                         <th>Gatunek</th>
                         <th>ISBN</th>
                         <th>Data wydania</th>
-                        <th>Data rezerwacji</th>
+                        <th>Data wypożyczenia</th>
                         <th>Status</th>
                     </tr>
                     </thead>
