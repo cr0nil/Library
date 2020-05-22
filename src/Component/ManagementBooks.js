@@ -4,69 +4,19 @@ import { Button } from 'react-bootstrap';
 import Navbar from "react-bootstrap/Navbar";
 import { Form, FormControl, Alert, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import EditBookComponent from './EditBookComponent';
 
-//Może ten alert jakoś wykorzystasz
-// function AlertDismissible() {
-//     const [show, setShow] = useState(true);
 
-//     return (
-//         <>
-//             <Alert show={show} variant="success">
-//                 <Alert.Heading>How's it going?!</Alert.Heading>
-//                 <p>
-//                     Duis mollis
-//                 </p>
-//                 <Form>
-//                     <Form.Group as={Row} controlId="validationTitle">
-//                         <Form.Label column sm={2}> Podaj tytuł </Form.Label>
-//                         <Col sm={2}>
-//                             <Form.Control
-//                                 required
-//                                 type="text"
-//                                 name="title"
-//                                 placeholder="Tytuł"
-//                             />
-//                             <Form.Control.Feedback type="invalid">
-//                                 Podaj tytuł!
-//                             </Form.Control.Feedback>
-//                         </Col>
-//                     </Form.Group>
-
-//                     <Form.Group as={Row} controlId="validationAuthor">
-//                         <Form.Label column sm={2}> Podaj autora </Form.Label>
-//                         <Col sm={2}>
-//                             <Form.Control
-//                                 required
-//                                 type="text"
-//                                 name="author"
-//                                 placeholder="Autor"
-//                             />
-//                             <Form.Control.Feedback type="invalid">
-//                                 Podaj autora!
-//                             </Form.Control.Feedback>
-//                         </Col>
-//                     </Form.Group>
-
-//                 </Form>
-//                 <hr />
-//                 <div className="d-flex justify-content-end">
-//                     <Button onClick={() => setShow(false)} variant="outline-success">
-//                         Close me ya'll!
-//                     </Button>
-//                 </div>
-//             </Alert>
-
-//             {!show && <Button onClick={() => setShow(true)}>Show Alert</Button>}
-
-//         </>
-//     );
-// }
 
 class ManagementBooks extends Component {
     constructor(props) {
         super(props);
-        this.state = { books: [] };
-        this.state = { value: '' };
+        this.state = {
+            books: [],
+            value: '',
+            book: {},
+            showEdit:false
+        };
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -74,16 +24,16 @@ class ManagementBooks extends Component {
         this.setState({ value: event.target.value });
     }
 
-   async loadData() {
+    async loadData() {
         const zmienna = this.state.value;
-         const data = await  axios.get(`http://34.90.183.236:8080/books`,{ headers: {"Authorization" :  `Bearer ${this.props.token}` }})
-   return await data.data;
-           
+        const data = await axios.get(`http://34.90.183.236:8080/books`, { headers: { "Authorization": `Bearer ${this.props.token}` } })
+        return await data.data;
+
     }
 
     handleDelete(book) {
         console.log(book);
-        axios.delete(`http://34.90.183.236:8080/books/${book}`,{ headers: {"Authorization" :  `Bearer ${this.props.token}` }})
+        axios.delete(`http://34.90.183.236:8080/books/${book}`, { headers: { "Authorization": `Bearer ${this.props.token}` } })
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response);
@@ -100,35 +50,46 @@ class ManagementBooks extends Component {
     }
 
 
-showData(){
+    showData() {
 
- this.loadData().then(data =>{
-        console.log("wpadada",data);
-   
-      let books =  data.map((book) => {
+        this.loadData().then(data => {
+            console.log("wpadada", data);
+
+            let books = data.map((book) => {
                 return (
                     <tr key={book.id}>
-                    
+
                         <td>{book.author}</td>
                         <td>{book.title}</td>
                         <td>{book.genre}</td>
                         <td>{book.isbn}</td>
                         <td>{book.releaseDate}</td>
-                        <td><Button variant="outline-success"  disabled ={book.status === "RESERVED" || book.status === "BORROWED"} >{book.status === "RESERVED" ? "Zarezerwowana" : book.status === "BORROWED" ? "Wypożyczona":"Edytuj"} </Button>{' '}</td>
-                        <td><Button variant="danger" onClick={() => this.handleDelete(book.id)} disabled ={book.status === "RESERVED" || book.status === "BORROWED"}>Usuń</Button></td>
+                        <td><Button variant="outline-success" onClick={() => this.setToEdit(book)} disabled={book.status === "RESERVED" || book.status === "BORROWED"} >{book.status === "RESERVED" ? "Zarezerwowana" : book.status === "BORROWED" ? "Wypożyczona" : "Edytuj"} </Button>{' '}</td>
+                        <td><Button variant="danger" onClick={() => this.handleDelete(book.id)} disabled={book.status === "RESERVED" || book.status === "BORROWED"}>Usuń</Button></td>
                     </tr>
                 )
             })
-            this.setState({ books})
+            this.setState({ books })
         }
-    
-    ).catch(err => {console.log(err)});
-       
-}
+
+        ).catch(err => { console.log(err) });
+
+    }
+
+
+    setToEdit(book){
+
+        this.setState({
+            book ,
+            showEdit:true //!this.state.showEdit
+        })
+    }
 
     handleSearch(event) {
         this.showData()
     }
+
+
 
     render() {
         return (
@@ -157,7 +118,7 @@ showData(){
                         {this.state.books}
                     </tbody>
                 </Table>
-                {/* <AlertDismissible /> */}
+               {this.state.showEdit === true ? <EditBookComponent book={this.state.book} token = {this.props.token} /> :null}
             </div>
 
 
