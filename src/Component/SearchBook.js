@@ -19,9 +19,24 @@ class SearchBook extends Component {
         this.setState({ value: event.target.value });
     }
 
-    handleReservation(event) {
+    handleReservation(book) {
+        console.log(book);
+        axios.post(`http://34.90.183.236:8080/reservations/borrow/${book}`, { headers: { "Authorization": `Bearer ${this.props.token}` } })
+            .then(function (response) {
+                if (response.status === 200) {
+                    console.log(response);
+                    alert("Zarezerwowano książkę")
+                }
+            }).catch(function (error) {
+            console.log(error);
+        })
 
+        // this.setState(state => {
+        //     state.books = book;
+        //     return state;
+        // })
     }
+
     async loadData() {
         const zmienna = this.state.value;
 
@@ -44,7 +59,7 @@ class SearchBook extends Component {
                         <td>{book.genre}</td>
                         <td>{book.isbn}</td>
                         <td>{book.releaseDate}</td>
-                        <td><Button variant="outline-primary" onClick={(event) => this.handleReservation(event)} disabled={book.status === "RESERVED" || book.status === "BORROWED"} >
+                        <td><Button variant="outline-primary" onClick={() => this.handleReservation(book.id)} disabled={book.status === "RESERVED" || book.status === "BORROWED"} >
                             {book.status === "RESERVED" ? "Zarezerwowana" : book.status === "BORROWED" ? "Wypożyczona" : "Wypożycz"}</Button>
                         </td>
                     </tr>
