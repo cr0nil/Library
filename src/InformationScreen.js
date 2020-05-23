@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from "react-bootstrap/Navbar";
-import {Button, Form, FormControl, Table} from "react-bootstrap";
+import {Button, Form, Card, Table, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 
 
@@ -12,13 +12,11 @@ class InformationScreen extends Component {
     constructor(props) {
         super(props);
         this.state = { users: [] };
-
+        this.showData()
     }
 
     async loadData() {
-        const zmienna = this.props.email
-        console.log(zmienna)
-        const data = await axios.get(`http://34.90.183.236:8080/reservations`, { headers: { "Authorization": `Bearer ${this.props.token}` }, params: {email: zmienna} })
+        const data = await axios.get(`http://34.90.183.236:8080/reservations`, { headers: { "Authorization": `Bearer ${this.props.token}` }})
         return await data.data;
 
     }
@@ -52,16 +50,29 @@ class InformationScreen extends Component {
     render() {
         return (
             <div>
-                <Navbar className="bg-light justify-content-center">
-                    <Form inline>
-                        <Button variant="primary" onClick={(event) => this.showData(event)}>Szukaj</Button>
-                    </Form>
-                </Navbar>
-                {this.props.email}
-                {this.props.name}
-                {this.props.lastName}
-                {this.props.numBorrowed}
-                {this.props.cashPenalty}
+                <br/>
+                <Card style={{ width: '25rem' }}>
+                    <Card.Body>
+                        <Card.Title>Twoje dane</Card.Title>
+                        <Container>
+                            <Row>
+                                <Col>Twój email: {this.props.email}</Col>
+                            </Row>
+                            <Row>
+                                <Col>Imię: {this.props.name}</Col>
+                            </Row>
+                            <Row>
+                                <Col>Nazwisko: {this.props.lastName}</Col>
+                            </Row>
+                            <Row>
+                                <Col>Ilość wypożyczonych książek: {this.props.numBorrowed}</Col>
+                            </Row>
+                            <Row>
+                                <Col>Kara: {this.props.cashPenalty}</Col>
+                            </Row>
+                        </Container>
+                    </Card.Body>
+                </Card>
 
                 <br/>
                 <h1>Twoje książki</h1>

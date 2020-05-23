@@ -14,6 +14,9 @@ class EditBookComponent extends Component {
         }
         this.author2 = React.createRef();
         this.title2 = React.createRef();
+        this.genre2 = React.createRef();
+        this.isbn2 = React.createRef();
+        this.releaseDate2 = React.createRef();
 
     }
 
@@ -25,16 +28,24 @@ class EditBookComponent extends Component {
         let body = {
             title: this.title2.current.value,
             author: this.author2.current.value,
+            genre: this.genre2.current.value,
+            isbn: this.isbn2.current.value,
+            releaseDate: this.releaseDate2.current.value,
         }
         axios.put(apiBaseUrl, body,{ headers: {"Authorization" :  `Bearer ${this.props.token}` }})
         .then(function (response) {
             if (response.status === 200) {
                 console.log(response);
-                alert("edytowano ksążkę")
+                alert("Edytowano ksążkę")
             }
         }).catch(function (error) {
         console.log(error);
     })
+        //
+        // this.setState(state => {
+        //     state.show = show;
+        //     return state;
+        // })
 
     }
     render() {
@@ -42,10 +53,7 @@ class EditBookComponent extends Component {
         return (
             <>
                 <Alert show={this.state.show} variant="success">
-                    <Alert.Heading>How's it going?!</Alert.Heading>
-                    <p>
-                        Duis mollis
-                </p>
+                    <Alert.Heading>Edycja książki!</Alert.Heading>
                     <Form>
                         <Form.Group as={Row} controlId="validationTitle">
                             <Form.Label column sm={2}> Podaj tytuł </Form.Label>
@@ -72,7 +80,7 @@ class EditBookComponent extends Component {
                                     type="text"
                                     name="author"
                                     defaultValue={this.props.book.author}
-                                    placeholder="Tytuł"
+                                    placeholder="Autor"
                                     
                                     ref={this.author2}
                                 />
@@ -82,17 +90,68 @@ class EditBookComponent extends Component {
                             </Col>
                         </Form.Group>
 
+                        <Form.Group as={Row} controlId="validationGenre">
+                            <Form.Label column sm={2}> Podaj gatunek </Form.Label>
+                            <Col sm={2}>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    name="genre"
+                                    defaultValue={this.props.book.genre}
+                                    placeholder="Gatunek"
+
+                                    ref={this.genre2}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Podaj gatunek!
+                                </Form.Control.Feedback>
+                            </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} controlId="validationIsbn">
+                            <Form.Label column sm={2}> Podaj ISBN </Form.Label>
+                            <Col sm={2}>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    name="isbn"
+                                    defaultValue={this.props.book.isbn}
+                                    placeholder="ISBN"
+
+                                    ref={this.isbn2}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Podaj ISBN!
+                                </Form.Control.Feedback>
+                            </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} controlId="validationRelaseDate">
+                            <Form.Label column sm={2}> Podaj datę wydania </Form.Label>
+                            <Col sm={2}>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    name="releaseDate"
+                                    defaultValue={this.props.book.releaseDate}
+                                    placeholder="Data wydania"
+
+                                    ref={this.releaseDate2}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Podaj datę wydania!
+                                </Form.Control.Feedback>
+                            </Col>
+                        </Form.Group>
+
                     </Form>
                     <hr />
                     <div className="d-flex justify-content-end">
                         <Button onClick={() => this.setShow(false)} variant="outline-success">
-                            Close me ya'll!
+                            Wykonaj edycję
                     </Button>
                     </div>
                 </Alert>
-
-                {!this.state.show && <Button onClick={() => this.setShow(true)}>Show Alert</Button>}
-
             </>
         );
     }
