@@ -114,7 +114,9 @@ class Login extends Component {
         if (response.status == 200) {
           console.log("Login successfull");
         
-          libraryScreen.push(<Library appContext={self.props.appContext} role={response.data.role} token ={response.data.token} firstName = {response.data.firstName} />)
+          libraryScreen.push(<Library appContext={self.props.appContext} role={response.data.role} token ={response.data.token} firstName = {response.data.firstName}
+                                      lastName = {response.data.lastName} numBorrowed = {response.data.numBorrowed} cashPenalty = {response.data.cashPenalty} email = {response.data.email}
+          />)
           self.props.appContext.setState({ loginPage: [], libraryScreen: libraryScreen })
 
             } else if (response.status === 204) {
@@ -127,10 +129,9 @@ class Login extends Component {
           })
           .catch(function (error) {
             console.log(error);
-            if (error.response.status === 401) {
-              console.log("Username does not exists401");
-              alert("Błędne dane")
-            }
+            // if (error.response.status == 401) {
+            //   alert("Błędne dane")
+            // }
           });
     }
     else {

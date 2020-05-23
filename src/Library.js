@@ -10,6 +10,7 @@ import LibraryScreen from './LibraryScreen';
 import LibraryMenScreen from './LibraryMenScreen';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import InformationScreen from "./InformationScreen";
 
 class Library extends Component {
   constructor(props) {
@@ -23,10 +24,12 @@ class Library extends Component {
     var currentScreen = [];
     if(this.props.role === "ROLE_READER"){
       console.log("token",this.props.token);
-      currentScreen.push(<LibraryScreen appContext={this.props.appContext} role={this.props.role} name = {this.props.firstName} />);
+      currentScreen.push(<LibraryScreen appContext={this.props.appContext} role={this.props.role} name = {this.props.firstName}  token = {this.props.token}
+                                        lastName = {this.props.lastName} numBorrowed = {this.props.numBorrowed} cashPenalty = {this.props.cashPenalty} email = {this.props.email}
+      />);
       this.setState({ currentScreen })
     }else{
-      currentScreen.push(<LibraryMenScreen appContext={this.props.appContext} role={this.props.role}  name = {this.props.firstName}/>);
+      currentScreen.push(<LibraryMenScreen appContext={this.props.appContext} role={this.props.role}  name = {this.props.firstName} token = {this.props.token}/>);
       this.setState({ currentScreen })
     }
    
@@ -48,10 +51,19 @@ class Library extends Component {
 
   handleMenuClick(event, page) {
     switch (page) {
-      case "openprint":
+      case "information":
         // console.log("need to open uploadapge")
         var currentScreen = [];
-        currentScreen.push(<LibraryScreen appContext={this.props.appContext} role={this.props.role} />);
+        currentScreen.push(<InformationScreen appContext={this.props.appContext} token ={this.props.token} role={this.props.role} name = {this.props.firstName}
+                                              lastName = {this.props.lastName} numBorrowed = {this.props.numBorrowed} cashPenalty = {this.props.cashPenalty} email = {this.props.email}
+        />);
+        this.setState({ currentScreen })
+        break;
+
+      case "search":
+        // console.log("need to open uploadapge")
+        var currentScreen = [];
+        currentScreen.push(<LibraryScreen appContext={this.props.appContext} token ={this.props.token} role={this.props.role} name = {this.props.firstName}/>);
         this.setState({ currentScreen })
         break;
 
@@ -89,18 +101,22 @@ class Library extends Component {
              open={this.state.draweropen}>
               <MenuItem>
                 <div>
-                  User Profile
-              <a href="#"><FontIcon
-                    className="material-icons drawerclosebutton"
-                    color={blue500}
-                    styles={{ top: 10, }}
-                    onClick={(event) => this.toggleDrawer(event)}></FontIcon></a>
+                  Menu
+              {/*<a href="#"><FontIcon*/}
+              {/*      className="material-icons drawerclosebutton"*/}
+              {/*      color={blue500}*/}
+              {/*      styles={{ top: 10, }}*/}
+              {/*      onClick={(event) => this.toggleDrawer(event)}></FontIcon></a>*/}
                 </div>
               </MenuItem>
               <div>
-                <MenuItem onClick={(event) => this.handleMenuClick(event, "openprint")}>
-                  xxx
+                <MenuItem onClick={(event) => this.handleMenuClick(event, "information")}>
+                  Informacje
               </MenuItem>
+
+                <MenuItem onClick={(event) => this.handleMenuClick(event, "search")}>
+                  Wyszukaj książki
+                </MenuItem>
 
                 <MenuItem onClick={(event) => this.handleMenuClick(event, "logout")}>
                   Logout

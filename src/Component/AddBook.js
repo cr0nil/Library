@@ -79,8 +79,8 @@ class AddBook extends Component {
                             required
                             ref={this.genre}
                         >
-                            <option>powiesc</option>
                             <option>dramat</option>
+                            <option>powiesc</option>
                             <option>wiersz</option>
                             <option>historyczna</option>
                             <option>fantasy</option>
@@ -149,7 +149,7 @@ class AddBook extends Component {
             releaseDate: this.relaseDate.current.value
         }
         console.log(body)
-        axios.post(apiBaseUrl, body)
+        axios.post(apiBaseUrl, body,{ headers: {"Authorization" :  `Bearer ${this.props.token}` }})
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response);

@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ManagementBooks from './Component/ManagementBooks';
 import AddBook from './Component/AddBook';
 import ReservationsBook from './Component/ReservationsBook';
-import { Tab } from 'react-bootstrap';
+import {Card, Tab} from 'react-bootstrap';
 import { Tabs } from 'react-bootstrap';
 
 
@@ -28,7 +28,7 @@ class LibraryMenScreen extends Component {
     }
   }
   componentDidMount(){
- 
+ console.log(this.props.token)
   }
 
  
@@ -38,7 +38,9 @@ class LibraryMenScreen extends Component {
       <div className="App">
         <div>
             <div>
-              Zalogowany jako bibliotekarz {this.props.name}
+                <Card>
+                    <Card.Body>Zalogowany jako czytelnik {this.props.name}</Card.Body>
+                </Card>
             </div>
 
           {/*<MuiThemeProvider>*/}
@@ -48,13 +50,13 @@ class LibraryMenScreen extends Component {
 
         <Tabs defaultActiveKey="management" id="uncontrolled-tab-example">
           <Tab eventKey="management" title="Zarządzanie książkami">
-          <ManagementBooks/>
+          <ManagementBooks token = {this.props.token}/>
           </Tab>
           <Tab eventKey="add" title="Dodaj książkę">
-          <AddBook/>
+          <AddBook token = {this.props.token}/>
           </Tab>
           <Tab eventKey="reservation" title="Wypożyczenia/Zwroty" >
-          <ReservationsBook/>
+          <ReservationsBook token = {this.props.token}/>
           </Tab>
         </Tabs>
 
