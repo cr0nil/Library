@@ -110,9 +110,9 @@ class Library extends Component {
                 </div>
               </MenuItem>
               <div>
-                <MenuItem onClick={(event) => this.handleMenuClick(event, "information")}>
+               {this.props.role == "ROLE_READER"? <MenuItem onClick={(event) => this.handleMenuClick(event, "information")}>
                   Informacje
-              </MenuItem>
+              </MenuItem> : null}
 
                 <MenuItem onClick={(event) => this.handleMenuClick(event, "search")}>
                   Wyszukaj książki
