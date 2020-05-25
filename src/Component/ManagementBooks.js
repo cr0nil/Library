@@ -50,7 +50,7 @@ class ManagementBooks extends Component {
     }
 
 
-    showData() {
+    showData () {
 
         this.loadData().then(data => {
             console.log("wpadada", data);
@@ -81,8 +81,9 @@ class ManagementBooks extends Component {
 
         this.setState({
             book ,
-            showEdit:true //!this.state.showEdit
+            showEdit:!this.state.showEdit
         })
+        
     }
 
     handleSearch(event) {
@@ -119,6 +120,7 @@ class ManagementBooks extends Component {
                     </tbody>
                 </Table>
                {this.state.showEdit === true ? <EditBookComponent book={this.state.book} token = {this.props.token} /> :null}
+               <Button onClick={()=>this.showData()}>Odśwież</Button>
             </div>
 
 

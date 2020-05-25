@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import Navbar from "react-bootstrap/Navbar";
 import { Form, FormControl, Alert, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import ManagementBooks from './ManagementBooks';
 
 class EditBookComponent extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class EditBookComponent extends Component {
 
     setShow(show){
         this.setState({
-            show
+            show:!this.state.show
         })
         var apiBaseUrl = `http://34.90.183.236:8080/books/${this.props.book.id}`;
         let body = {
@@ -34,13 +35,17 @@ class EditBookComponent extends Component {
         }
         axios.put(apiBaseUrl, body,{ headers: {"Authorization" :  `Bearer ${this.props.token}` }})
         .then(function (response) {
+           
             if (response.status === 200) {
                 console.log(response);
                 alert("Edytowano ksążkę")
+           
+                
             }
         }).catch(function (error) {
         console.log(error);
     })
+   
         //
         // this.setState(state => {
         //     state.show = show;
