@@ -41,11 +41,13 @@ class Library extends Component {
     this.setState({ draweropen: !this.state.draweropen })
   }
   closeDrawer = () => {
-    // console.log("drawer click");
-    // if (this.state.draweropen == true) {
-    //   console.log("asd")
-    //   this.setState({ draweropen: false })
-    // }
+    console.log("drawer click",this.state.draweropen);
+    if (this.state.draweropen === true) {
+      console.log("asd")
+      this.setState({ draweropen: false })
+    }else{
+      this.setState({ draweropen: true })
+    }
 
   }
 
@@ -85,7 +87,7 @@ class Library extends Component {
 
           <AppBar title="Biblioteka"
             // onClick={e => this.toggleDrawer(e)}
-            onLeftIconButtonClick={this.toggleDrawer}
+            // onLeftIconButtonClick={this.toggleDrawer}
             // iconElementLeft={ <IconButton onTouchTap={ event => this.toggleDrawer(event) }  >
             //                     <MoreVertIcon />
             //                   </IconButton> }
@@ -94,7 +96,7 @@ class Library extends Component {
       
 
           <MuiThemeProvider>
-          <ClickAwayListener onClickAway={e=>this.closeDrawer()}>
+          <ClickAwayListener onClickAway={this.closeDrawer}>
             <Drawer 
              variant="persistent"
            
