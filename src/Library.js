@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Drawer from 'material-ui/Drawer';
+import Drawer from "@material-ui/core/Drawer";
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import FontIcon from 'material-ui/FontIcon';
@@ -18,21 +18,21 @@ class Library extends Component {
     this.state = { draweropen: false, currentScreen: [] };
   }
 
-  
+
 
   componentDidMount() {
     var currentScreen = [];
-    if(this.props.role === "ROLE_READER"){
-      console.log("token",this.props.token);
-      currentScreen.push(<LibraryScreen appContext={this.props.appContext} role={this.props.role} name = {this.props.firstName}  token = {this.props.token}
-                                        lastName = {this.props.lastName} numBorrowed = {this.props.numBorrowed} cashPenalty = {this.props.cashPenalty} email = {this.props.email}
+    if (this.props.role === "ROLE_READER") {
+      console.log("token", this.props.token);
+      currentScreen.push(<LibraryScreen appContext={this.props.appContext} role={this.props.role} name={this.props.firstName} token={this.props.token}
+        lastName={this.props.lastName} numBorrowed={this.props.numBorrowed} cashPenalty={this.props.cashPenalty} email={this.props.email}
       />);
       this.setState({ currentScreen })
-    }else{
-      currentScreen.push(<LibraryMenScreen appContext={this.props.appContext} role={this.props.role}  name = {this.props.firstName} token = {this.props.token}/>);
+    } else {
+      currentScreen.push(<LibraryMenScreen appContext={this.props.appContext} role={this.props.role} name={this.props.firstName} token={this.props.token} />);
       this.setState({ currentScreen })
     }
-   
+
   }
 
   toggleDrawer = () => {
@@ -41,12 +41,10 @@ class Library extends Component {
     this.setState({ draweropen: !this.state.draweropen })
   }
   closeDrawer = () => {
-    console.log("drawer click",this.state.draweropen);
+    console.log("drawer click", this.state.draweropen);
     if (this.state.draweropen === true) {
       console.log("asd")
       this.setState({ draweropen: false })
-    }else{
-      this.setState({ draweropen: true })
     }
 
   }
@@ -56,8 +54,8 @@ class Library extends Component {
       case "information":
         // console.log("need to open uploadapge")
         var currentScreen = [];
-        currentScreen.push(<InformationScreen appContext={this.props.appContext} token ={this.props.token} role={this.props.role} name = {this.props.firstName}
-                                              lastName = {this.props.lastName} numBorrowed = {this.props.numBorrowed} cashPenalty = {this.props.cashPenalty} email = {this.props.email}
+        currentScreen.push(<InformationScreen appContext={this.props.appContext} token={this.props.token} role={this.props.role} name={this.props.firstName}
+          lastName={this.props.lastName} numBorrowed={this.props.numBorrowed} cashPenalty={this.props.cashPenalty} email={this.props.email}
         />);
         this.setState({ currentScreen })
         break;
@@ -65,7 +63,7 @@ class Library extends Component {
       case "search":
         // console.log("need to open uploadapge")
         var currentScreen = [];
-        currentScreen.push(<LibraryScreen appContext={this.props.appContext} token ={this.props.token} role={this.props.role} name = {this.props.firstName}/>);
+        currentScreen.push(<LibraryScreen appContext={this.props.appContext} token={this.props.token} role={this.props.role} name={this.props.firstName} />);
         this.setState({ currentScreen })
         break;
 
@@ -77,42 +75,47 @@ class Library extends Component {
     }
     this.setState({ draweropen: false })
   }
- 
+
 
 
   render() {
     return (
-      <div className="App">
-        <MuiThemeProvider>
+      <div>
+        <div className="App">
 
-          <AppBar title="Biblioteka"
-            // onClick={e => this.toggleDrawer(e)}
-            // onLeftIconButtonClick={this.toggleDrawer}
-            // iconElementLeft={ <IconButton onTouchTap={ event => this.toggleDrawer(event) }  >
-            //                     <MoreVertIcon />
-            //                   </IconButton> }
-            isInitiallyOpen={true} />
-        </MuiThemeProvider>
-      
 
           <MuiThemeProvider>
-          <ClickAwayListener onClickAway={this.closeDrawer}>
-            <Drawer 
-             variant="persistent"
-           
-             open={this.state.draweropen}>
+
+            <AppBar title="Biblioteka"
+              // onClick={this.toggleDrawer}
+              onLeftIconButtonClick={this.toggleDrawer}
+              
+              // iconElementLeft={ <IconButton onTouchTap={ event => this.toggleDrawer(event) }  >
+              //                     <MoreVertIcon />
+              //                   </IconButton> }
+              isInitiallyOpen={true} />
+          </MuiThemeProvider>
+
+          <MuiThemeProvider
+
+
+          >
+            <Drawer
+
+              ModalProps={{ onBackdropClick: this.toggleDrawer, onEscapeKeyDown: this.toggleDrawer }}
+              open={this.state.draweropen}>
               <MenuItem>
                 <div>
                   Menu
               {/*<a href="#"><FontIcon*/}
-              {/*      className="material-icons drawerclosebutton"*/}
-              {/*      color={blue500}*/}
-              {/*      styles={{ top: 10, }}*/}
-              {/*      onClick={(event) => this.toggleDrawer(event)}></FontIcon></a>*/}
+                  {/*      className="material-icons drawerclosebutton"*/}
+                  {/*      color={blue500}*/}
+                  {/*      styles={{ top: 10, }}*/}
+                  {/*      onClick={(event) => this.toggleDrawer(event)}></FontIcon></a>*/}
                 </div>
               </MenuItem>
               <div>
-               {this.props.role === "ROLE_READER"? <MenuItem onClick={(event) => this.handleMenuClick(event, "information")}>
+                {this.props.role == "ROLE_READER" ? <MenuItem onClick={(event) => this.handleMenuClick(event, "information")}>
                   Informacje
               </MenuItem> : null}
 
@@ -125,10 +128,13 @@ class Library extends Component {
               </MenuItem>
               </div>
             </Drawer>
-            </ClickAwayListener>
+
           </MuiThemeProvider>
-      
-        <div>
+
+
+
+        </div>
+        <div >
           {this.state.currentScreen}
         </div>
       </div>
