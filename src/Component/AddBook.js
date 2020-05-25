@@ -120,7 +120,7 @@ class AddBook extends Component {
                             required
                             type="text"
                             name="releaseDate"
-                            placeholder="Data"
+                            placeholder="DD-MM-RRRR"
                             ref={this.relaseDate}
                         />
                         <Form.Control.Feedback type="invalid">

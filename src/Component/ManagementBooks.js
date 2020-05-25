@@ -64,8 +64,10 @@ class ManagementBooks extends Component {
                         <td>{book.genre}</td>
                         <td>{book.isbn}</td>
                         <td>{book.releaseDate}</td>
-                        <td><Button variant="outline-success" onClick={() => this.setToEdit(book)} disabled={book.status === "RESERVED" || book.status === "BORROWED"} >{book.status === "RESERVED" ? "Zarezerwowana" : book.status === "BORROWED" ? "Wypożyczona" : "Edytuj"} </Button>{' '}</td>
-                        <td><Button variant="danger" onClick={() => this.handleDelete(book.id)} disabled={book.status === "RESERVED" || book.status === "BORROWED"}>Usuń</Button></td>
+                        <td><Button variant="outline-success" onClick={() => this.setToEdit(book)} >Edytuj</Button>{' '}</td>
+                        <td><Button variant="danger" onClick={() => this.handleDelete(book.id)} disabled={book.status === "RESERVED" || book.status === "BORROWED"}>
+                            {book.status === "RESERVED" ? "Zarezerwowana" : book.status === "BORROWED" ? "Wypożyczona" : "Usuń"}
+                        </Button></td>
                     </tr>
                 )
             })
@@ -99,7 +101,8 @@ class ManagementBooks extends Component {
                 <Navbar className="bg-light justify-content-center">
                     <Form inline>
                         <FormControl type="text" value={this.state.value} onChange={this.handleChange} placeholder="Wpisz tytuł książki" className=" mr-sm-4" />
-                        <Button variant="primary" onClick={(event) => this.handleSearch(event)}>Szukaj</Button>
+                        <Button variant="primary" onClick={(event) => this.handleSearch(event)} className=" mr-sm-4">Szukaj</Button>
+                        <Button onClick={()=>this.showData()}>Odśwież</Button>
                     </Form>
                 </Navbar>
                 <br />
@@ -120,7 +123,6 @@ class ManagementBooks extends Component {
                     </tbody>
                 </Table>
                {this.state.showEdit === true ? <EditBookComponent book={this.state.book} token = {this.props.token} /> :null}
-               <Button onClick={()=>this.showData()}>Odśwież</Button>
             </div>
 
 

@@ -99,14 +99,23 @@ class EditBookComponent extends Component {
                             <Form.Label column sm={2}> Podaj gatunek </Form.Label>
                             <Col sm={2}>
                                 <Form.Control
+                                    as="select"
                                     required
-                                    type="text"
-                                    name="genre"
                                     defaultValue={this.props.book.genre}
-                                    placeholder="Gatunek"
-
                                     ref={this.genre2}
-                                />
+                                >
+                                    <option>dramat</option>
+                                    <option>powiesc</option>
+                                    <option>wiersz</option>
+                                    <option>historyczna</option>
+                                    <option>fantasy</option>
+                                    <option>horror</option>
+                                    <option>komedia</option>
+                                    <option>autobiografia</option>
+                                    <option>kryminal</option>
+                                    <option>tragedia</option>
+                                    <option>przygodowa</option>
+                                </Form.Control>
                                 <Form.Control.Feedback type="invalid">
                                     Podaj gatunek!
                                 </Form.Control.Feedback>
