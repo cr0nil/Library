@@ -88,7 +88,7 @@ class ReservationsBook extends Component {
                             <td>{user.bookReleaseDate}</td>
                             <td>{user.reservationDate}</td>
                             <td>{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Dostepna"}</td>
-                            <td><Button variant="info" onClick={() => this.handleReturn(user.reservationId)} disabled ={user.bookStatus === "RESERVED"}>Zwróc</Button></td>
+                            <td><Button variant="info" onClick={() => this.handleReturn(user.reservationId)} disabled ={user.bookStatus === "RESERVED"}>Zwróć</Button></td>
                             <td><Button variant="info" onClick={() => this.handleLend(user.reservationId)} disabled ={user.bookStatus === "BORROWED"}>Wypożycz</Button></td>
                             {/*<td><Button variant="outline-primary"  disabled ={user.bookStatus === "RESERVED" || user.bookStatus === "BORROWED"} >{user.bookStatus === "RESERVED" ? "Zarezerwowana" : user.bookStatus === "BORROWED" ? "Wypożyczona":"Wypożycz"} </Button>{' '}</td>*/}
                         </tr>

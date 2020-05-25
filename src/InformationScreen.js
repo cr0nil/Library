@@ -68,7 +68,7 @@ class InformationScreen extends Component {
                                 <Col>Ilość wypożyczonych książek: {this.props.numBorrowed}</Col>
                             </Row>
                             <Row>
-                                <Col>Kara: {this.props.cashPenalty}</Col>
+                                <Col>Kara: {this.props.cashPenalty} zł</Col>
                             </Row>
                         </Container>
                     </Card.Body>

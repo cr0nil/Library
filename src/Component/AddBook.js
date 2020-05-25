@@ -157,6 +157,9 @@ class AddBook extends Component {
                 }
             }).catch(function (error) {
             console.log(error);
+            if (error.response.status === 500) {
+                alert("Zły format daty")
+            }
         })
         this.clearForm()
     }
