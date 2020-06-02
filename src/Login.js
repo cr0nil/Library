@@ -129,9 +129,9 @@ class Login extends Component {
           })
           .catch(function (error) {
             console.log(error);
-            // if (error.response.status == 401) {
-            //   alert("Błędne dane")
-            // }
+            if (error.response.status === 401) {
+              alert("Błędne dane")
+            }
           });
     }
     else {

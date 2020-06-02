@@ -39,7 +39,7 @@ class LibraryMenScreen extends Component {
         <div>
             <div>
                 <Card>
-                    <Card.Body>Zalogowany jako czytelnik {this.props.name}</Card.Body>
+                    <Card.Body>Zalogowany jako bibliotekarz {this.props.name}</Card.Body>
                 </Card>
             </div>
 

@@ -42,7 +42,7 @@ class Register extends Component {
             //  console.log("registration successfull");
             var loginscreen = [];
             loginscreen.push(<Login parentContext={this} appContext={self.props.appContext} role={role} />);
-            var loginmessage = "Not Registered yet.Go to registration";
+            var loginmessage = "Zarejestrowano!";
             self.props.parentContext.setState({
               loginscreen: loginscreen,
               loginmessage: loginmessage,
@@ -59,7 +59,7 @@ class Register extends Component {
         });
     }
     else {
-      alert("Input field value is missing");
+      alert("Wypełnij wszystkie pola!");
     }
 
   }
