@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form, Row, Col, Alert} from "react-bootstrap";
 import axios from 'axios';
+import {apiUrl} from "./Url";
 
 class AddBook extends Component {
     constructor(props) {
@@ -139,7 +140,7 @@ class AddBook extends Component {
 
 
     handleSubmit = (event) => {
-        var apiBaseUrl = "http://34.90.183.236:8080/books";
+        var apiBaseUrl = apiUrl+"books";
         event.preventDefault();
         let body = {
             title: this.title.current.value,

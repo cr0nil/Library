@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { Form } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
 import axios from "axios";
-
+import {apiUrl} from "./Url";
 
 class ReservationsBook extends Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class ReservationsBook extends Component {
 
             "Authorization": `Bearer ${this.props.token}`
         }
-        axios({ method: 'POST', url: `http://34.90.183.236:8080/reservations/lend/${user}`, headers: headers})
+        axios({ method: 'POST', url: apiUrl+`reservations/lend/${user}`, headers: headers})
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response);
@@ -49,7 +49,7 @@ class ReservationsBook extends Component {
 
             "Authorization": `Bearer ${this.props.token}`
         }
-        axios({ method: 'POST', url: `http://34.90.183.236:8080/reservations/return/${user}`, headers: headers})
+        axios({ method: 'POST', url: apiUrl+`reservations/return/${user}`, headers: headers})
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response);
@@ -69,7 +69,7 @@ class ReservationsBook extends Component {
     async loadData() {
         const zmienna = this.state.value;
         console.log(zmienna)
-        const data = await axios.get(`http://34.90.183.236:8080/reservations`, { headers: { "Authorization": `Bearer ${this.props.token}` }, params: {email: zmienna} })
+        const data = await axios.get(apiUrl+`reservations`, { headers: { "Authorization": `Bearer ${this.props.token}` }, params: {email: zmienna} })
         return await data.data;
 
     }

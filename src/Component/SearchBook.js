@@ -4,8 +4,8 @@ import { Button } from 'react-bootstrap';
 import Navbar from "react-bootstrap/Navbar";
 import { Form } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
-
 import axios from 'axios';
+import {apiUrl} from "./Url";
 
 class SearchBook extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class SearchBook extends Component {
         
              "Authorization": `Bearer ${this.props.token}` 
         }
-        axios({ method: 'POST', url: `http://34.90.183.236:8080/reservations/borrow/${book}`, headers: headers})
+        axios({ method: 'POST', url: apiUrl+`reservations/borrow/${book}`, headers: headers})
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response);
@@ -44,7 +44,7 @@ class SearchBook extends Component {
     async loadData() {
         const zmienna = this.state.value;
 
-        const data = await axios.get(`http://34.90.183.236:8080/books`, { headers: { "Authorization": `Bearer ${this.props.token}` }, params: {search: 'title%' + zmienna} })
+        const data = await axios.get(apiUrl+`books`, { headers: { "Authorization": `Bearer ${this.props.token}` }, params: {search: 'title%' + zmienna} })
         return await data.data;
 
     }

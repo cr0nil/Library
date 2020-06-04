@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import Navbar from "react-bootstrap/Navbar";
 import { Form, FormControl, Alert, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-import ManagementBooks from './ManagementBooks';
+import {apiUrl} from "./Url";
 
 class EditBookComponent extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class EditBookComponent extends Component {
         this.setState({
             show:!this.state.show
         })
-        var apiBaseUrl = `http://34.90.183.236:8080/books/${this.props.book.id}`;
+        var apiBaseUrl = apiUrl+`books/${this.props.book.id}`;
         let body = {
             title: this.title2.current.value,
             author: this.author2.current.value,

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import {Button, Form, Card, Table, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
-
+import {apiUrl} from "./Component/Url";
 
 
 
@@ -16,7 +16,7 @@ class InformationScreen extends Component {
     }
 
     async loadData() {
-        const data = await axios.get(`http://34.90.183.236:8080/reservations`, { headers: { "Authorization": `Bearer ${this.props.token}` }})
+        const data = await axios.get(apiUrl+`reservations`, { headers: { "Authorization": `Bearer ${this.props.token}` }})
         return await data.data;
 
     }

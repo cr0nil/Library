@@ -3,14 +3,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-
+import {apiUrl} from "./Component/Url";
 import axios from 'axios';
-// import UploadPage from './UploadPage';
 import Library from './Library';
 
-var apiBaseUrl = "http://34.90.183.236:8080/authenticate/usertoken";
+var apiBaseUrl = apiUrl+"authenticate/usertoken";
 class Login extends Component {
   constructor(props) {
     super(props);

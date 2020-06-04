@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
 import Book from './Component/Book';
-import BookList from './Component/BookList';
 import SearchBook from './Component/SearchBook';
-import ReactSearchBox from 'react-search-box';
 import { Card } from 'react-bootstrap';
-
-
 import axios from 'axios';
-var apiBaseUrl = "http://34.90.183.236:8080/books";
-// var request = require('superagent');
+import {apiUrl} from "./Component/Url";
+
 var config = {
   headers: {"Access-Control-Allow-Origin": "http://localhost:3000/",
   'Access-Control-Allow-Credentials':true}
@@ -66,13 +60,6 @@ class LibraryScreen extends Component {
   }
 
 
-
-
-  handleClick(event) {
-    // console.log("handleClick",event);
-    this.setState({ printingmessage: "Krowin na wolno" })
-
-  }
   handleDivClick(event) {
     // console.log("event",event);
     if (this.state.draweropen) {
@@ -110,7 +97,7 @@ class LibraryScreen extends Component {
 
 
   async  getData() {
-    const data = await  axios.get("http://34.90.183.236:8080/books", config);
+    const data = await  axios.get(apiUrl+"books", config);
     console.log(data.data)
   return await data.data;
   }

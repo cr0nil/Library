@@ -6,6 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import Login from './Login';
+import {apiUrl} from "./Component/Url";
 
 class Register extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Register extends Component {
     console.log("nextProps", nextProps);
   }
   handleClick(event, role) {
-    var apiBaseUrl = "http://34.90.183.236:8080/users";
+    var apiBaseUrl = apiUrl+"/users";
 
     var self = this;
 

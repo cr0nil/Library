@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
 import ManagementBooks from './Component/ManagementBooks';
 import AddBook from './Component/AddBook';
 import ReservationsBook from './Component/ReservationsBook';
@@ -9,9 +7,6 @@ import {Card, Tab} from 'react-bootstrap';
 import { Tabs } from 'react-bootstrap';
 
 
-import axios from 'axios';
-var apiBaseUrl = "http://34.90.183.236:8080/books";
-// var request = require('superagent');
 var config = {
   headers: {"Access-Control-Allow-Origin": "http://localhost:3000/",
   'Access-Control-Allow-Credentials':true}
@@ -68,8 +63,5 @@ class LibraryMenScreen extends Component {
   }
 }
 
-const style = {
-  margin: 15,
-};
 
 export default LibraryMenScreen;

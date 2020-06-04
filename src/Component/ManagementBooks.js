@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { Form, FormControl, Alert, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import EditBookComponent from './EditBookComponent';
+import {apiUrl}  from "./Url";
 
 
 
@@ -26,14 +27,14 @@ class ManagementBooks extends Component {
 
     async loadData() {
         const zmienna = this.state.value;
-        const data = await axios.get(`http://34.90.183.236:8080/books`, { headers: { "Authorization": `Bearer ${this.props.token}` }, params: {search: 'title%' + zmienna} })
+        const data = await axios.get(apiUrl+"books", { headers: { "Authorization": `Bearer ${this.props.token}` }, params: {search: 'title%' + zmienna} })
         return await data.data;
 
     }
 
     handleDelete(book) {
         console.log(book);
-        axios.delete(`http://34.90.183.236:8080/books/${book}`, { headers: { "Authorization": `Bearer ${this.props.token}` } })
+        axios.delete(apiUrl+`books/${book}`, { headers: { "Authorization": `Bearer ${this.props.token}` } })
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response);
