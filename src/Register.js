@@ -22,7 +22,7 @@ class Register extends Component {
     console.log("nextProps", nextProps);
   }
   handleClick(event, role) {
-    var apiBaseUrl = apiUrl+"/users";
+    var apiBaseUrl = apiUrl+"users";
 
     var self = this;
 
